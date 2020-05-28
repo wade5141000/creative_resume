@@ -6,22 +6,27 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
-/*
+/**
     使用者
  */
-
 @Entity
 @Getter
 @Setter
+@Table(name = "all_user")
 public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    private Integer userId;
 
-    private String name;
+    @Column(unique = true,name = "USER_NAME")
+    private String userName;
 
     private String email;
+
+    private String account;
+
+    private String password;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="USER_ID_FK")

@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
-/*
+/**
     課表
  */
 @Entity
@@ -16,7 +16,7 @@ public class Curriculum {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    private Integer curriculumId;
 
     private String name;
 

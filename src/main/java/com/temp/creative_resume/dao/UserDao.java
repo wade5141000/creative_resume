@@ -4,5 +4,9 @@ import com.temp.creative_resume.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserDao extends JpaRepository<User, Integer> {
-    User getUserById(Integer id);
+
+    User getUserByUserId(Integer id);
+
+    User getUserByAccount(String account);
+
 }

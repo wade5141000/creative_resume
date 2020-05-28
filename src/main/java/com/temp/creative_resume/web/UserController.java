@@ -3,9 +3,7 @@ package com.temp.creative_resume.web;
 import com.temp.creative_resume.model.User;
 import com.temp.creative_resume.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -15,9 +13,10 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @GetMapping("/add")
-    public @ResponseBody String addNewUser () {
-        return userService.addNewUser();
+    @PostMapping("/add")
+    public @ResponseBody String addNewUser(User user) {
+	    System.out.println(user);
+        return userService.addNewUser(user);
     }
 
     @GetMapping("/all")

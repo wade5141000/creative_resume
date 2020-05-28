@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="zh-Hang-TW" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>login</title>
 </head>
 <body>
-
+    <div>
+        <h2>請登入</h2>
+        <form th:action="@{/user/login}" method="post">
+            <label for="account">帳號: </label>
+            <input type="text" id="account" name="username">
+            <label for="pwd">密碼: </label>
+            <input type="password" id="pwd" name="password">
+            <button type="submit">確定</button>
+        </form>
+    </div>
 </body>
 </html>

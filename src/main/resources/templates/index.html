@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hang-TW" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>index</title>
 </head>
 <body>
     <h1>hello index</h1>
+    <h2>註冊帳號</h2>
+    <form th:action="@{/add}" method="post">
+        <label for="account">帳號: </label>
+        <input type="text" id="account" name="account">
+        <label for="pwd">密碼: </label>
+        <input type="password" id="pwd" name="password">
+        <button type="submit">確定</button>
+    </form>
 </body>
 </html>
