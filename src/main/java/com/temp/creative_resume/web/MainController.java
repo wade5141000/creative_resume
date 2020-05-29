@@ -17,13 +17,5 @@ public class MainController {
     	return "login";
     }
 
-//	@RequestMapping("/user/login")
-//	public String login(@RequestParam String username, @RequestParam String password){
-//
-//		System.out.println("aaaa");
-//		System.out.println(username);
-//		System.out.println(password);
-//		return null;
-//	}
 
 }
