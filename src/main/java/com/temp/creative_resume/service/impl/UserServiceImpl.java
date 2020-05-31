@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
         User n = new User();
 //        n.setName("name1");
 //        n.setEmail("email1");
-        n.setAccount(user.getAccount());
+        n.setUsername(user.getUsername());
 		n.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 
 //        List<Curriculum> list = new ArrayList<>();

@@ -1,4 +1,4 @@
-package com.temp.creative_resume.service.impl;
+package com.temp.creative_resume.config;
 
 
 import com.temp.creative_resume.dao.UserDao;
@@ -20,13 +20,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
 	private UserDao userDao;
 
 	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		User userByAccount = userDao.getUserByAccount(userName);
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User userByAccount = userDao.getUserByUsername(username);
 		if(userByAccount == null){
 			throw new UsernameNotFoundException("user not found");
 		}
 		// TODO ROLE去DB撈
-		List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ADMIN, USER");
-		return new User();
+		userByAccount.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList("ADMIN, USER"));
+		return userByAccount;
 	}
 }

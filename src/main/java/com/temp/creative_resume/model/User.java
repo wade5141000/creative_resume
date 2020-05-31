@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 /**
     使用者
@@ -15,54 +16,43 @@ import java.util.Collection;
 @Getter
 @Setter
 @Table(name = "all_user")
-public class User implements UserDetails {
+public class User implements UserDetails{
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
-    @Column(unique = true,name = "USER_NAME")
-    private String userName;
-
-    private String email;
-
-	@Column(unique = true,name = "USER_NAME")
-    private String account;
+	@Column(unique = true, name="account")
+	private String username;
 
     private String password;
+
+    private String userRealName;
 
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    @JoinColumn(name="USER_ID_FK")
 //    private List<Curriculum> curricula;
 
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
-	}
-
-	@Override
-	public String getUsername() {
-		return null;
-	}
+	@Transient
+	private List<GrantedAuthority> authorities;
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return false;
+		return true;
 	}
 }
