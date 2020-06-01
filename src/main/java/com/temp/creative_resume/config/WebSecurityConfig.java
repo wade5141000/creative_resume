@@ -1,7 +1,5 @@
 package com.temp.creative_resume.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,12 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.annotation.Resource;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	@Qualifier("customUserDetailsService")
+	@Resource(name = "customUserDetailsService")
 	private UserDetailsService userDetailsService;
 
     @Override
@@ -26,7 +25,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //	    http.authorizeRequests()
 //		    .antMatchers("/**")
 //		    .permitAll();
-
 //        http.formLogin() // 定義當需要提交表單進行用戶登錄時候，轉到的登錄頁面。
 //	        .and()
 //	        .authorizeRequests() // 定義哪些URL需要被保護、哪些不需要被保護
@@ -36,10 +34,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	    http.formLogin()
 		    .loginPage("/login")
 		    .loginProcessingUrl("/user/login")
+		    .failureUrl("/login_error")
 		    .defaultSuccessUrl("/").permitAll()
 		    .and()
+		    .logout()
+		    .logoutUrl("/logout")
+		    .logoutSuccessUrl("/logout_finish")
+		    .and()
 		    .authorizeRequests()
-		    .antMatchers("/", "/user/login", "/add").permitAll()
+		    .antMatchers("/", "/user/login", "/add", "/logout_finish").permitAll()
 		    .anyRequest().authenticated()
 		    .and().csrf().disable();
 
@@ -47,47 +50,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    	auth.userDetailsService(userDetailsService)
-	    .passwordEncoder(passwordEncoder());
-//		auth.authenticationProvider(authenticationProvider());
-
-//		auth.inMemoryAuthentication()
-//			.passwordEncoder(new BCryptPasswordEncoder())
-//			.withUser("admin")
-//			.password(new BCryptPasswordEncoder().encode("admin"))
-//			.roles("admin");
-
+    	auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
-
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
     	return new BCryptPasswordEncoder();
     }
 
-//	@Bean
-//	public DaoAuthenticationProvider authenticationProvider() {
-//		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-//		authenticationProvider.setUserDetailsService(userDetailsService);
-//		authenticationProvider.setPasswordEncoder(passwordEncoder());
-//		return authenticationProvider;
-//	}
-
 	@Override
 	public void configure(WebSecurity web) throws Exception {
     	web.ignoring().antMatchers("/webjars/**/*", "/**/*.css", "/**/*.js");
     }
-
-    /**
-     * 配置一個userDetailsService Bean
-     * 不再生成默認security.user用戶
-     */
-//    @Bean
-//    @Override
-//    protected UserDetailsService userDetailsService() {
-//
-//    	return super.userDetailsService();
-//    }
-
 
 }

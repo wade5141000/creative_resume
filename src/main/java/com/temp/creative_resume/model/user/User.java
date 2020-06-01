@@ -1,12 +1,11 @@
-package com.temp.creative_resume.model;
+package com.temp.creative_resume.model.user;
 
+import com.temp.creative_resume.model.CourseTable;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "all_user")
-public class User implements UserDetails{
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,12 +28,14 @@ public class User implements UserDetails{
 
     private String userRealName;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name="USER_ID_FK")
-//    private List<Curriculum> curricula;
 
-	@Transient
-	private List<GrantedAuthority> authorities;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="USER_ID_FK")
+    private List<CourseTable> courseTable;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="USER_ID_FK")
+	private List<UserRole> authorities;
 
 	@Override
 	public boolean isAccountNonExpired() {

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MainController {
+public class BasicController {
 
     @GetMapping("/")
     public String index(){
@@ -15,6 +15,16 @@ public class MainController {
     @GetMapping("/login")
     public String loginPage(){
     	return "login";
+    }
+
+    @GetMapping("/login_error")
+	public String errorPage(){
+		return "error";
+    }
+
+    @GetMapping("/logout_finish")
+	public String logoutPage(){
+    	return "logout";
     }
 
 

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-Hang-TW" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>My Course</title>
+	<link rel="stylesheet" th:href="@{/css/temp.css}" type="text/css"/>
+	<script th:src="@{/js/temp.js}"></script>
+</head>
+<body>
+	<div>
+		<div th:include="layout/navigator"></div>
+		<th:block layout:fragment="content"/>
+		<div th:include="layout/footer"></div>
+	</div>
+</body>
+</html>
