@@ -3,10 +3,8 @@ package com.temp.creative_resume.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
     課程
@@ -23,7 +21,6 @@ public class Course {
 	private String courseName;
 
 	private String courseNumber;
-
 	// 選修、必修、通識
 	private String type;
 
@@ -36,10 +33,15 @@ public class Course {
 	private Double score;
 
 	private String remark;
-
 	// 抵免、已修、未修
 	private String status;
+	// 星期幾
+	private String dayOfTheWeek;
+	// 節次
+	private String period;
 
+	@ManyToMany(cascade=CascadeType.ALL, mappedBy="courses")
+	private List<CourseTable> courseTables;
 
 
 }

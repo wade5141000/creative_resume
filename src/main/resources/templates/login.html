@@ -3,9 +3,8 @@
       layout:decorator="layout/main">
 
 	<th:block layout:fragment="content">
-        <h2>請登入</h2>
-	    <a th:href="@{/}">go to index</a><br>
-	    <a th:href="@{/logout}">log out</a><br>
+        <h2 th:if="${flag} == 1">執行操作前，請先登入</h2>
+        <h2 th:unless="${flag} == 1">歡迎您，請登入</h2>
         <form th:action="@{/user/login}" method="post">
             <label for="account">帳號: </label>
             <input type="text" id="account" name="username">

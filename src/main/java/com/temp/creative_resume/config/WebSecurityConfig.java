@@ -32,17 +32,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //	        .authenticated();
 
 	    http.formLogin()
-		    .loginPage("/login")
+		    .loginPage("/login?flag=1")
 		    .loginProcessingUrl("/user/login")
-		    .failureUrl("/login_error")
 		    .defaultSuccessUrl("/").permitAll()
+		    .failureUrl("/login_error")
 		    .and()
 		    .logout()
 		    .logoutUrl("/logout")
-		    .logoutSuccessUrl("/logout_finish")
+		    .logoutSuccessUrl("/logout_success")
 		    .and()
 		    .authorizeRequests()
-		    .antMatchers("/", "/user/login", "/add", "/logout_finish").permitAll()
+		    .antMatchers("/", "/user/login", "/add", "/login", "/logout_success", "/signup").permitAll()
 		    .anyRequest().authenticated()
 		    .and().csrf().disable();
 

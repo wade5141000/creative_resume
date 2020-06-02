@@ -1,5 +1,6 @@
 package com.temp.creative_resume.model.user;
 
+import com.temp.creative_resume.model.Course;
 import com.temp.creative_resume.model.CourseTable;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,16 +27,24 @@ public class User implements UserDetails {
 
     private String password;
 
-    private String userRealName;
+    private String nickname;
 
+    private String school;
+	// 科系
+    private String department;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="USER_ID_FK")
-    private List<CourseTable> courseTable;
+    private List<CourseTable> courseTables;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="USER_ID_FK")
+	private List<Course> courses;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="USER_ID_FK")
 	private List<UserRole> authorities;
+
 
 	@Override
 	public boolean isAccountNonExpired() {

@@ -22,19 +22,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
     public String addNewUser(User user){
-		user.setUserRealName("my name: "+ UUID.randomUUID());
+		user.setNickname("my name: "+ UUID.randomUUID());
 		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		List<UserRole> authorities = new ArrayList<>();
-		authorities.add(new UserRole("ADMIN"));
 		authorities.add(new UserRole("GENERAL"));
 		user.setAuthorities(authorities);
-
 		try {
 			userDao.save(user);
 		}catch (Exception e){
 			e.printStackTrace();
 		}
-
         return "Saved";
     }
 

@@ -2,9 +2,12 @@ package com.temp.creative_resume.web;
 
 import com.temp.creative_resume.model.user.User;
 import com.temp.creative_resume.service.UserService;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
@@ -20,8 +23,8 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public @ResponseBody Iterable<User> getAllUsers(Authentication authentication) {
-	    System.out.println(((User)authentication.getPrincipal()).getUserRealName());
+    public @ResponseBody Iterable<User> getAllUsers(Model model,User user) {
+	    System.out.println("all");
         return userService.getAllUsers();
     }
 
