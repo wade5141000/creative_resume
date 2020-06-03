@@ -1,4 +1,4 @@
-package com.temp.creative_resume.model;
+package com.sedia.my_course.model;
 
 import lombok.Getter;
 import lombok.Setter;

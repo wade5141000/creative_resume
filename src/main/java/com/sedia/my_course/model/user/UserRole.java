@@ -1,4 +1,4 @@
-package com.temp.creative_resume.model.user;
+package com.sedia.my_course.model.user;
 
 
 import lombok.Getter;

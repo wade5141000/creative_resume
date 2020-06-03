@@ -1,7 +1,7 @@
-package com.temp.creative_resume.model.user;
+package com.sedia.my_course.model.user;
 
-import com.temp.creative_resume.model.Course;
-import com.temp.creative_resume.model.CourseTable;
+import com.sedia.my_course.model.Course;
+import com.sedia.my_course.model.CourseTable;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;

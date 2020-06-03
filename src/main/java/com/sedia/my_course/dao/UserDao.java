@@ -1,6 +1,6 @@
-package com.temp.creative_resume.dao;
+package com.sedia.my_course.dao;
 
-import com.temp.creative_resume.model.user.User;
+import com.sedia.my_course.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserDao extends JpaRepository<User, Integer> {

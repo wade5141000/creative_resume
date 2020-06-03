@@ -1,6 +1,6 @@
-package com.temp.creative_resume.web;
+package com.sedia.my_course.web;
 
-import com.temp.creative_resume.model.user.User;
+import com.sedia.my_course.model.user.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;

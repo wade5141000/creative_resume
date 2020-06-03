@@ -1,6 +1,6 @@
-package com.temp.creative_resume.service;
+package com.sedia.my_course.service;
 
-import com.temp.creative_resume.model.user.User;
+import com.sedia.my_course.model.user.User;
 
 public interface UserService {
 

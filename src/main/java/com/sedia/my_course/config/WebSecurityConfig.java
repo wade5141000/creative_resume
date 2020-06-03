@@ -1,4 +1,4 @@
-package com.temp.creative_resume.config;
+package com.sedia.my_course.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

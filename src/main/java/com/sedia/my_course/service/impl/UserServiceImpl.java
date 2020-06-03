@@ -1,9 +1,9 @@
-package com.temp.creative_resume.service.impl;
+package com.sedia.my_course.service.impl;
 
-import com.temp.creative_resume.dao.UserDao;
-import com.temp.creative_resume.model.user.User;
-import com.temp.creative_resume.model.user.UserRole;
-import com.temp.creative_resume.service.UserService;
+import com.sedia.my_course.dao.UserDao;
+import com.sedia.my_course.model.user.UserRole;
+import com.sedia.my_course.service.UserService;
+import com.sedia.my_course.model.user.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

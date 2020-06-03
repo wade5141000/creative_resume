@@ -1,4 +1,4 @@
-package com.temp.creative_resume.web;
+package com.sedia.my_course.web;
 
 
 import org.springframework.stereotype.Controller;

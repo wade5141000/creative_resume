@@ -1,8 +1,8 @@
-package com.temp.creative_resume.config;
+package com.sedia.my_course.config;
 
 
-import com.temp.creative_resume.dao.UserDao;
-import com.temp.creative_resume.model.user.User;
+import com.sedia.my_course.dao.UserDao;
+import com.sedia.my_course.model.user.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -1,6 +1,6 @@
-package com.temp.creative_resume.web;
+package com.sedia.my_course.web;
 
-import com.temp.creative_resume.model.Course;
+import com.sedia.my_course.model.Course;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
