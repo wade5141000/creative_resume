@@ -1,16 +1,17 @@
 $(function () {
     $('#confirm').click(function () {
-        let formData = new FormData($('#courseForm')[0]);
-        let url = '/course/add';
+        let formData = new FormData($('#addForm')[0]);
+        let url = '/course-table/add';
         $.ajax({
             type: 'POST',
             url: url,
             data: JSON.stringify(Object.fromEntries(formData)),
             contentType: 'application/json;charset=utf-8;',
             success: function () {
-                alert("ajax 成功");
+                alert("課表建立成功");
             }
         });
 
     });
+
 });

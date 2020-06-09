@@ -1,9 +1,9 @@
 package com.sedia.my_course.service.impl;
 
 import com.sedia.my_course.dao.UserDao;
+import com.sedia.my_course.model.user.User;
 import com.sedia.my_course.model.user.UserRole;
 import com.sedia.my_course.service.UserService;
-import com.sedia.my_course.model.user.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
     public String addNewUser(User user){
+		// TODO 存之前要驗證 DB 帳號重複
 		user.setNickname("my name: "+ UUID.randomUUID());
 		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		List<UserRole> authorities = new ArrayList<>();

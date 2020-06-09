@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public @ResponseBody Iterable<User> getAllUsers(Model model,User user) {
+    public @ResponseBody Iterable<User> getAllUsers(Model model, User user) {
 	    System.out.println("all");
         return userService.getAllUsers();
     }
