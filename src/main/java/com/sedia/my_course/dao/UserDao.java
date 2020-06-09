@@ -7,6 +7,6 @@ public interface UserDao extends JpaRepository<User, Integer> {
 
     User getUserByUserId(Integer id);
 
-    User getUserByUsername(String username);
+    User getUserByAccount(String account);
 
 }

@@ -22,8 +22,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
-	@Column(unique = true, name="account")
-	private String username;
+	@Column(unique = true)
+	private String account;
 
     private String password;
 
@@ -45,6 +45,11 @@ public class User implements UserDetails {
     @JoinColumn(name="USER_ID_FK")
 	private List<UserRole> authorities;
 
+
+	@Override
+	public String getUsername() {
+		return this.account;
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {
