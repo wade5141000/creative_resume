@@ -2,6 +2,7 @@ package com.sedia.my_course.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -42,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		    .logoutSuccessUrl("/logout_success")
 		    .and()
 		    .authorizeRequests()
-		    .antMatchers("/", "/user/login", "/add", "/login", "/logout_success", "/signup").permitAll()
+		    .antMatchers("/", "/index", "/user/login", "/user/add", "/login", "/logout_success", "/signup").permitAll()
 		    .anyRequest().authenticated()
 		    .and().csrf().disable();
 
@@ -63,4 +64,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	web.ignoring().antMatchers("/webjars/**/*", "/**/*.css", "/**/*.js");
     }
 
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 }

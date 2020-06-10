@@ -23,7 +23,7 @@ public class UserRole implements GrantedAuthority {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer roleId;
-
+	// 使用者角色
 	private String role;
 
 	public UserRole(String role){

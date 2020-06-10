@@ -21,26 +21,26 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-
+	// 帳號
 	@Column(unique = true)
 	private String account;
-
+	// 密碼
     private String password;
-
+	// 暱稱 / 姓名
     private String nickname;
-
+	// 學校
     private String school;
 	// 科系
     private String department;
-
+	// 課表
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="USER_ID_FK")
     private List<CourseTable> courseTables;
-
+	// 課程
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="USER_ID_FK")
 	private List<Course> courses;
-
+	// 使用者角色
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="USER_ID_FK")
 	private List<UserRole> authorities;

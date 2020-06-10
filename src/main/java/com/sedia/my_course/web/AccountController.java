@@ -7,12 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class BasicController {
-
-    @GetMapping("/")
-    public String index(){
-        return "index";
-    }
+public class AccountController {
 
     @GetMapping("/login")
     public String loginPage(Model model, @RequestParam(required = false) String flag){
@@ -34,6 +29,5 @@ public class BasicController {
 	public String signUp(){
     	return "signup";
     }
-
 
 }

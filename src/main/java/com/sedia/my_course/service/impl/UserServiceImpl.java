@@ -4,6 +4,7 @@ import com.sedia.my_course.dao.UserDao;
 import com.sedia.my_course.model.user.User;
 import com.sedia.my_course.model.user.UserRole;
 import com.sedia.my_course.service.UserService;
+import lombok.SneakyThrows;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Transactional
 @Service("UserService")
@@ -21,19 +21,17 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
 	@Override
-    public String addNewUser(User user){
-		// TODO 存之前要驗證 DB 帳號重複
-		user.setNickname("my name: "+ UUID.randomUUID());
-		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-		List<UserRole> authorities = new ArrayList<>();
-		authorities.add(new UserRole("GENERAL"));
-		user.setAuthorities(authorities);
-		try {
+	@SneakyThrows
+    public void addNewUser(User user){
+		if(userDao.getUserByAccount(user.getAccount()) == null){
+			user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+			List<UserRole> authorities = new ArrayList<>();
+			authorities.add(new UserRole("GENERAL"));
+			user.setAuthorities(authorities);
 			userDao.save(user);
-		}catch (Exception e){
-			e.printStackTrace();
+		}else{
+			throw new Exception("account already exists");
 		}
-        return "Saved";
     }
 
 	@Override
@@ -41,8 +39,4 @@ public class UserServiceImpl implements UserService {
         return userDao.findAll();
     }
 
-    @Override
-    public User getUserById(String id){
-        return userDao.getUserByUserId(Integer.parseInt(id));
-    }
 }

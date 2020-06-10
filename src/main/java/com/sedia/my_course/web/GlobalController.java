@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @ControllerAdvice
 public class GlobalController {
 
-
 	@ModelAttribute
 	public void addAttributes(Model model, Authentication authentication){
 		if(authentication != null){

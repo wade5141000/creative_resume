@@ -11,18 +11,33 @@
 					<td><label for="courseTableName">課表名稱</label></td>
 					<td><input type="text" name="courseTableName" id="courseTableName"></td>
 				</tr>
-<!--				<tr>-->
-<!--					<td><label for="courseNumber">課程代碼</label></td>-->
-<!--					<td><input type="text" name="courseNumber" id="courseNumber"></td>-->
-<!--				</tr>-->
-<!--				<tr>-->
-<!--					<td><label for="type">選別</label></td>-->
-<!--					<td><input type="text" name="type" id="type"></td>-->
-<!--				</tr>-->
-<!--				<tr>-->
-<!--					<td><label for="units">學分(輸入數字)</label></td>-->
-<!--					<td><input type="text" name="units" id="units"></td>-->
-<!--				</tr>-->
+				<tr>
+					<td>哪幾天安排課程</td>
+					<td>
+						<label><input type="checkbox" value="星期一" checked>星期一</label>
+						<label><input type="checkbox" value="星期二" checked>星期二</label>
+						<label><input type="checkbox" value="星期三" checked>星期三</label>
+						<label><input type="checkbox" value="星期四" checked>星期四</label>
+						<label><input type="checkbox" value="星期五" checked>星期五</label><br/>
+						<label><input type="checkbox" value="星期六">星期六</label>
+						<label><input type="checkbox" value="星期日">星期日</label>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="lessons">課表需要幾堂課</label></td>
+					<td>
+						<select id="lessons">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+						</select>
+					</td>
+				</tr>
 			</table>
 		</form>
 		<button id="confirm">確定</button>

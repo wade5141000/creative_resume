@@ -4,10 +4,8 @@ import com.sedia.my_course.model.user.User;
 
 public interface UserService {
 
-	String addNewUser(User user);
+	void addNewUser(User user);
 
 	Iterable<User> getAllUsers();
-
-	User getUserById(String id);
 
 }
