@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @ControllerAdvice
 public class GlobalController {
 
+	// 登入使用者加到model
 	@ModelAttribute
 	public void addAttributes(Model model, Authentication authentication){
 		if(authentication != null){

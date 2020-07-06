@@ -24,12 +24,14 @@ public class CourseTable {
 	// 課表顯示幾節課
 	private String lessons;
     // 課程
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-	    name="course_table_and_course",
-	    joinColumns={@JoinColumn(name="COURSE_TABLE_FK")},
-	    inverseJoinColumns={@JoinColumn(name="COURSE_FK")}
-    )
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//	    name="course_table_and_course",
+//	    joinColumns={@JoinColumn(name="COURSE_TABLE_FK")},
+//	    inverseJoinColumns={@JoinColumn(name="COURSE_FK")}
+//    )
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="COURSE_TABLE_ID_FK")
     private List<Course> courses;
 
 

@@ -11,7 +11,20 @@ $(function () {
                 alert("課表建立成功");
             }
         });
-
     });
+
+    $('#addCourseToCourseTable').click(function () {
+        let courseId = $('#courseSelect').val();
+        let courseTableId = $('#courseTableId').text();
+        let url = '/course-table/abc?courseId=' + courseId + '&courseTableId=' + courseTableId;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function () {
+                alert("新增成功");
+            }
+        });
+    });
+
 
 });

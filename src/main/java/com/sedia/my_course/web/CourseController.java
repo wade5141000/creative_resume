@@ -4,6 +4,7 @@ import com.sedia.my_course.model.Course;
 import com.sedia.my_course.model.user.User;
 import com.sedia.my_course.service.CourseService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -16,7 +17,8 @@ public class CourseController {
 	private CourseService courseService;
 
 	@GetMapping("/add")
-	public String addCoursePage(){
+	public String addCoursePage(Model model,User user){
+		model.addAttribute("course", courseService.getAllCourseByUser(user.getUserId()));
 		return "course/course_add";
 	}
 

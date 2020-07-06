@@ -36,14 +36,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		    .loginPage("/login?flag=1")
 		    .loginProcessingUrl("/user/login")
 		    .defaultSuccessUrl("/").permitAll()
-		    .failureUrl("/login_error")
+		    .failureUrl("/error")
 		    .and()
 		    .logout()
 		    .logoutUrl("/logout")
-		    .logoutSuccessUrl("/logout_success")
+		    .logoutSuccessUrl("/")
 		    .and()
 		    .authorizeRequests()
-		    .antMatchers("/", "/index", "/user/login", "/user/add", "/login", "/logout_success", "/signup").permitAll()
+		    .antMatchers("/", "/index", "/user/login", "/user/add", "/login", "/signup").permitAll()
 		    .anyRequest().authenticated()
 		    .and().csrf().disable();
 

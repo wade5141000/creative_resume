@@ -26,6 +26,14 @@
 		</table>
 	</form>
 	<button id="confirm">確定</button>
+
+	<table>
+		<tr th:each="course:${course}">
+			<td th:text="${course.courseName}"></td>
+		</tr>
+	</table>
+
+
 </th:block>
 
 </html>

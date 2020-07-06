@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @Transactional
@@ -25,6 +26,11 @@ public class CourseServiceImpl implements CourseService {
 		User user = userDao.getOne(userId);
 		user.getCourses().add(course);
 		userDao.save(user);
+	}
+
+	@Override
+	public List<Course> getAllCourseByUser(int userId) {
+		return userDao.getOne(userId).getCourses();
 	}
 
 }

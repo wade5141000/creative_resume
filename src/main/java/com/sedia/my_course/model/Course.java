@@ -3,8 +3,10 @@ package com.sedia.my_course.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
     課程
@@ -42,8 +44,8 @@ public class Course {
 	// 結束節次
 	private String periodEnd;
 	// 課表
-	@ManyToMany(cascade=CascadeType.ALL, mappedBy="courses")
-	private List<CourseTable> courseTables;
+//	@ManyToMany(cascade=CascadeType.ALL, mappedBy="courses")
+//	private List<CourseTable> courseTables;
 
 
 }

@@ -12,22 +12,12 @@ public class AccountController {
     @GetMapping("/login")
     public String loginPage(Model model, @RequestParam(required = false) String flag){
     	model.addAttribute("flag", flag);
-    	return "login";
-    }
-
-    @GetMapping("/login_error")
-	public String errorPage(){
-		return "error";
-    }
-
-    @GetMapping("/logout_success")
-	public String logoutPage(){
-    	return "logout_success";
+    	return "/account/login";
     }
 
     @GetMapping("/signup")
 	public String signUp(){
-    	return "signup";
+    	return "/account/signup";
     }
 
 }
