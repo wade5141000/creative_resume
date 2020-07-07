@@ -25,8 +25,6 @@ public class CourseTableServiceImpl implements CourseTableService {
 	@Resource
 	private CourseDao courseDao;
 
-
-
 	@Override
 	public void save(CourseTable courseTable, int userId) {
 		User user = userDao.getOne(userId);

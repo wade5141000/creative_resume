@@ -1,8 +1,10 @@
 package com.sedia.my_course.web;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 public class HomeController {
@@ -24,5 +26,11 @@ public class HomeController {
 		Object obj = null;
 		obj.equals("xxx");
 		return "xxx";
+	}
+
+	@GetMapping("/test3")
+	public String test3(Model model){
+		System.out.println("test3");
+		throw new ResponseStatusException(HttpStatus.FORBIDDEN, "你沒有權限");
 	}
 }

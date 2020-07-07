@@ -3,7 +3,7 @@
       layout:decorator="layout/main">
 
 	<th:block layout:fragment="content">
-		<h1>操作失敗，請重新操作</h1>
+		<h1 th:text="${'操作失敗，請重新操作，錯誤代碼：' + status}"></h1>
 		<a th:href="@{/}">回首頁</a><br>
 	</th:block>
 
