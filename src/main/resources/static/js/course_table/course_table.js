@@ -1,7 +1,7 @@
 $(function () {
     $('#confirm').click(function () {
         let formData = new FormData($('#addForm')[0]);
-        let url = '/course-table/add';
+        let url = contextPath + '/course-table/add';
         $.ajax({
             type: 'POST',
             url: url,
