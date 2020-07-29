@@ -18,24 +18,26 @@ import java.util.List;
 @Table(name = "all_user")
 public class User implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer userId;
 	// 帳號
 	@Column(unique = true)
 	private String account;
 	// 密碼
-    private String password;
+	private String password;
 	// 暱稱 / 姓名
-    private String nickname;
+	private String nickname;
 	// 學校
-    private String school;
+  private String school;
 	// 科系
-    private String department;
+  private String department;
+  // email
+	private String email;
 	// 課表
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name="USER_ID_FK")
-    private List<CourseTable> courseTables;
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JoinColumn(name="USER_ID_FK")
+  private List<CourseTable> courseTables;
 	// 課程
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="USER_ID_FK")
