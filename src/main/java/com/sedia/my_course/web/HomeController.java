@@ -16,8 +16,7 @@ public class HomeController {
 
 	@GetMapping("/test")
 	public String test(Model model){
-		System.out.println("test1");
-		throw new RuntimeException();
+		return "newpage/index";
 	}
 
 	@GetMapping("/test2")
@@ -33,4 +32,5 @@ public class HomeController {
 		System.out.println("test3");
 		throw new ResponseStatusException(HttpStatus.FORBIDDEN, "你沒有權限");
 	}
+
 }
