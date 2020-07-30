@@ -6,9 +6,9 @@
 		<meta name="description" content="myCourse - 專業的課程規劃及課表管理網站">
         <meta name="author" content="myCourse">
 
-        <link rel="shortcut icon" href="assets/images/favicon.png">
+		<link rel="shortcut icon" href="assets/images/favicon.png">
 
-        <title>myCourse - 專業的課程規劃及課表管理網站</title>
+		<title>myCourse - 專業的課程規劃及課表管理網站</title>
 
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
@@ -38,45 +38,28 @@
 				</div>
 
 				<div class="panel-body">
-					<form class="form-horizontal m-t-20" action="index.html">
-
-						<div class="form-group ">
-							<div class="col-xs-12">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-									<input type="password" name="example-input1-group1" class="form-control" placeholder="輸入新密碼(限4-16英文數字符號)">
-								</div>
-							</div>
+					<form method="post" action="#" role="form" class="text-center">
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+								×
+							</button>
+							請填寫<b>Email</b>我們將重新寄送密碼給您
 						</div>
-
-						<div class="form-group ">
-							<div class="col-xs-12">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-									<input type="password" name="example-input1-group1" class="form-control" placeholder="再次輸入密碼">
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group text-center m-t-40">
-							<div class="col-xs-12">
-								<button class="btn btn-default btn-block text-uppercase waves-effect waves-light" type="submit">
-									設定新密碼
-								</button>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-xs-12">
-								<div>取消重設，回到<a href="index.html">登入頁面</a>
-								</div>
+						<div class="form-group m-b-0">
+							<div class="input-group">
+								<input type="email" class="form-control" placeholder="請輸入註冊 Email" required="">
+								<span class="input-group-btn">
+									<button type="submit" class="btn btn-default w-sm waves-effect waves-light">
+										Reset
+									</button> 
+								</span>
 							</div>
 						</div>
 
 					</form>
-
 				</div>
 			</div>
+			
 
 		</div>
 
