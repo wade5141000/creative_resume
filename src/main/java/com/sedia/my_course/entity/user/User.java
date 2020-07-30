@@ -1,7 +1,7 @@
-package com.sedia.my_course.model.user;
+package com.sedia.my_course.entity.user;
 
-import com.sedia.my_course.model.Course;
-import com.sedia.my_course.model.CourseTable;
+import com.sedia.my_course.entity.Course;
+import com.sedia.my_course.entity.CourseTable;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;

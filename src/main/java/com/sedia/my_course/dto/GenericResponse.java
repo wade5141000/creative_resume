@@ -1,4 +1,4 @@
-package com.sedia.my_course.utils;
+package com.sedia.my_course.dto;
 
 import lombok.*;
 

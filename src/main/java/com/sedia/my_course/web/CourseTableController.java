@@ -1,7 +1,7 @@
 package com.sedia.my_course.web;
 
-import com.sedia.my_course.model.CourseTable;
-import com.sedia.my_course.model.user.User;
+import com.sedia.my_course.entity.CourseTable;
+import com.sedia.my_course.entity.user.User;
 import com.sedia.my_course.service.CourseService;
 import com.sedia.my_course.service.CourseTableService;
 import org.springframework.stereotype.Controller;

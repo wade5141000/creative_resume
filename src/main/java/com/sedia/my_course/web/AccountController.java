@@ -16,7 +16,7 @@ public class AccountController {
     }
 
     @GetMapping("/signup")
-	public String signUp(){
+		public String signUp(){
     	return "/account/signup";
     }
 

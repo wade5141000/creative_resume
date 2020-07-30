@@ -31,7 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //	        .authorizeRequests() // 定義哪些URL需要被保護、哪些不需要被保護
 //	        .anyRequest() // 任何請求,登錄後可以訪問
 //	        .authenticated();
-
+	    String[] permittedUrl = {"/", "/index", "/user/login", "/user/add", "/login", "/signup", "/user/reset-password",
+		    "/user/resetPassword", "/user/changePassword", "/user/savePassword"};
 	    http.formLogin()
 		    .loginPage("/login?flag=1")
 		    .loginProcessingUrl("/user/login")
@@ -43,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		    .logoutSuccessUrl("/")
 		    .and()
 		    .authorizeRequests()
-		    .antMatchers("/", "/index", "/user/login", "/user/add", "/login", "/signup").permitAll()
+		    .antMatchers(permittedUrl).permitAll()
 		    .anyRequest().authenticated()
 		    .and().csrf().disable();
 

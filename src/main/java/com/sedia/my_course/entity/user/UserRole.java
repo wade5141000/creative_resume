@@ -1,4 +1,4 @@
-package com.sedia.my_course.model.user;
+package com.sedia.my_course.entity.user;
 
 
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.sedia.my_course.service;
 
-import com.sedia.my_course.model.Course;
+import com.sedia.my_course.entity.Course;
 
 import java.util.List;
 

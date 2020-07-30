@@ -1,6 +1,6 @@
 package com.sedia.my_course.service;
 
-import com.sedia.my_course.model.CourseTable;
+import com.sedia.my_course.entity.CourseTable;
 
 public interface CourseTableService {
 

@@ -2,7 +2,7 @@ package com.sedia.my_course.config;
 
 
 import com.sedia.my_course.dao.UserDao;
-import com.sedia.my_course.model.user.User;
+import com.sedia.my_course.entity.user.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
