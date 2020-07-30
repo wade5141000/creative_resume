@@ -48,7 +48,7 @@
                 <!-- Button mobile view to collapse sidebar menu -->
                 <div class="navbar navbar-default" role="navigation">
                     <div class="container">
-                        <div class="">
+                        <div>
                             <div class="pull-left">
                                 <button class="button-menu-mobile open-left">
                                     <i class="ion-navicon"></i>
@@ -62,24 +62,24 @@
 			                </form>
 
 
-                            <ul class="nav navbar-nav navbar-right pull-right">
-                                <li class="dropdown hidden-xs">
+                            <ul class="nav navbar-nav navbar-right pull-right" style="display: flex;">
+                                <li class="dropdown">
                                     <a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-                                        <i class="icon-bell"></i> <span class="badge badge-xs badge-danger">3</span>
+                                        <i class="fa fa-calculator"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-lg">
-                                        <li class="notifi-title"><span class="label label-default pull-right">New 3</span>最新消息</li>
+                                        <li class="notifi-title">檢視課表</li>
                                         <li class="list-group nicescroll notification-list">
                                            <!-- list item-->
                                            <a href="javascript:void(0);" class="list-group-item">
                                               <div class="media">
                                                  <div class="pull-left p-r-10">
-                                                    <em class="fa fa-newspaper-o fa-2x text-custom"></em>
+                                                    <em class="fa fa-database fa-2x text-custom"></em>
                                                  </div>
                                                  <div class="media-body">
-                                                    <h5 class="media-heading">最新消息1</h5>
+                                                    <h5 class="media-heading">107學年-1</h5>
                                                     <p class="m-0">
-                                                        <small>最新消息1內文</small>
+                                                        <small>共6科目，18學分</small>
                                                     </p>
                                                  </div>
                                               </div>
@@ -89,12 +89,12 @@
                                            <a href="javascript:void(0);" class="list-group-item">
                                               <div class="media">
                                                  <div class="pull-left p-r-10">
-                                                    <em class="fa fa-newspaper-o fa-2x text-custom"></em>
+                                                    <em class="fa fa-database fa-2x text-custom"></em>
                                                  </div>
                                                  <div class="media-body">
-                                                    <h5 class="media-heading">最新消息2</h5>
+                                                    <h5 class="media-heading">107學年-2</h5>
                                                     <p class="m-0">
-                                                        <small>最新消息2內文</small>
+                                                        <small>共7科目，20學分</small>
                                                     </p>
                                                  </div>
                                               </div>
@@ -104,27 +104,16 @@
                                            <a href="javascript:void(0);" class="list-group-item">
                                               <div class="media">
                                                  <div class="pull-left p-r-10">
-                                                    <em class="fa fa-newspaper-o fa-2x text-custom"></em>
+                                                    <em class="fa fa-database fa-2x text-custom"></em>
                                                  </div>
                                                  <div class="media-body">
-                                                    <h5 class="media-heading">最新消息3</h5>
+                                                    <h5 class="media-heading">108學年-1</h5>
                                                     <p class="m-0">
-                                                        <small>最新消息3內文</small>
+                                                        <small>共5科目，14學分</small>
                                                     </p>
                                                  </div>
                                               </div>
                                            </a>
-
-                                          
-
-                                         
-
-                                           <!-- list item-->
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="list-group-item text-right">
-                                                <small class="font-600">查看所有消息</small>
-                                            </a>
                                         </li>
                                     </ul>
                                 </li>
@@ -192,12 +181,37 @@
 				<div class="content">
 					<div class="container">
 
+                        <!-- Page Title -->
+                        <div class="row m-b-15">
+							<div class="col-lg-6 col-sm-6 col-xs-12 m-b-15 pull-left">
+								<h4 class="page-title">學分統計表</h4>
+                            </div>
+                            <div class="col-lg-6 col-sm-6 col-xs-12 m-b-15 pull-right">
+                                <!-- 學期選擇 -->
+                                <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">學期：</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control">
+                                            <option>107學年-1</option>
+                                            <option>107學年-2</option>
+                                            <option>108學年-1</option>
+                                            <option>108學年-2</option>
+                                            <option>109學年-1</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        
                         <!-- 學分數統計 -->
+                        
                         <div class="row">
 							<div class="col-sm-12">
 								<div class="card-box widget-inline">
 									<div class="row">
-										<div class="col-lg-2 col-sm-6">
+										<div class="col-lg-2 col md-2 col-sm-6 col-xs-12">
 											<div class="widget-inline-box text-center">
                                                 <div class="mini-stat-info text-right text-dark">
                                                     <span class="counter text-dark">15</span>必修學分數
@@ -215,7 +229,7 @@
 											</div>
 										</div>
 										
-										<div class="col-lg-2 col-sm-6">
+										<div class="col-lg-2 col md-2 col-sm-6 col-xs-12">
 											<div class="widget-inline-box text-center">
                                                 <div class="mini-stat-info text-right text-dark">
                                                     <span class="counter text-dark">16</span>選修學分數
@@ -233,7 +247,7 @@
 											</div>
 										</div>
 										
-										<div class="col-lg-2 col-sm-6">
+										<div class="col-lg-2 col md-2 col-sm-6 col-xs-12">
 											<div class="widget-inline-box text-center">
                                                 <div class="mini-stat-info text-right text-dark">
                                                     <span class="counter text-dark">12</span>全人通識學分數
@@ -251,7 +265,7 @@
 											</div>
 										</div>
                                         
-                                        <div class="col-lg-2 col-sm-6">
+                                        <div class="col-lg-2 col md-2 col-sm-6 col-xs-12">
 											<div class="widget-inline-box text-center">
                                                 <div class="mini-stat-info text-right text-dark">
                                                     <span class="counter text-dark">12</span>必修學分數
@@ -269,7 +283,7 @@
 											</div>
 										</div>
 										
-										<div class="col-lg-4 col-sm-6">
+										<div class="col-lg-4 col md-4 col-sm-12 col-xs-12">
 											<div class="widget-inline-box text-center">
 												<span class="mini-stat-icon bg-success"><i class="ion-social-buffer text-white"></i></span>
                                                 <div class="mini-stat-info text-right text-dark">
@@ -299,7 +313,7 @@
 							<div class="col-sm-12">
 								<div class="card-box widget-inline">
 									<div class="row">
-										<div class="col-lg-2 col-sm-6">
+										<div class="col-lg-2 col md-2 col-sm-6 col-xs-12">
 											<div class="widget-inline-box text-center">
                                                 <div class="mini-stat-info text-right text-dark">
                                                     <span class="counter text-dark">22</span>
@@ -318,7 +332,7 @@
 											</div>
 										</div>
 										
-										<div class="col-lg-2 col-sm-6">
+										<div class="col-lg-2 col md-2 col-sm-6 col-xs-12">
 											<div class="widget-inline-box text-center">
                                                 <div class="mini-stat-info text-right text-dark">
                                                     <span class="counter text-dark">22</span>
@@ -337,7 +351,7 @@
 											</div>
 										</div>
 										
-										<div class="col-lg-2 col-sm-6">
+										<div class="col-lg-2 col md-2 col-sm-6 col-xs-12">
 											<div class="widget-inline-box text-center">
                                                 <div class="mini-stat-info text-right text-dark">
                                                     <span class="counter text-dark">10</span>
@@ -356,7 +370,7 @@
 											</div>
                                         </div>
                                         
-                                        <div class="col-lg-2 col-sm-6">
+                                        <div class="col-lg-2 col md-2 col-sm-6 col-xs-12">
 											<div class="widget-inline-box text-center">
                                                 <div class="mini-stat-info text-right text-dark">
                                                     <span class="counter text-dark">8</span>
@@ -375,7 +389,7 @@
 											</div>
 										</div>
 										
-										<div class="col-lg-4 col-sm-6">
+										<div class="col-lg-4 col md-4 col-sm-12 col-xs-12">
 											<div class="widget-inline-box text-center">
 												<span class="mini-stat-icon bg-danger"><i class="ion-android-book text-white"></i></span>
                                                 <div class="mini-stat-info text-right text-dark">
