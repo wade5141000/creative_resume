@@ -61,9 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 	@Override
-	public void configure(WebSecurity web) throws Exception {
-    	String[] ignore = {"/webjars/**/*", "/**/*.css", "/**/*.js", "/**/*.jpg", "/**/*.ttf", "/**/*.woff"
-		    , "/**/*.woff2"};
+	public void configure(WebSecurity web) {
+    	String[] ignore = {"/webjars/**/*", "/css/**", "/js/**", "/vendor/**"};
     	web.ignoring().antMatchers(ignore);
     }
 
