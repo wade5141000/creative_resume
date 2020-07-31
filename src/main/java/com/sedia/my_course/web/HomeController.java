@@ -18,7 +18,7 @@ public class HomeController {
 	public String test(Model model){
 		model.addAttribute("showNavigator", "N");
 		model.addAttribute("showFooter", "N");
-		return "newpage/index";
+		return "login";
 	}
 
 	@GetMapping("/test2")

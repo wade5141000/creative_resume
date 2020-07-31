@@ -27,6 +27,18 @@ public class UserController {
 	@Resource
 	protected AuthenticationManager authenticationManager;
 
+	@GetMapping("/login")
+	public String loginPage(Model model){
+		model.addAttribute("showNavigator","N");
+		model.addAttribute("showFooter","N");
+		return "account/login";
+	}
+
+	@GetMapping("/signup")
+	public String signUp(){
+		return "account/signup";
+	}
+
 	@PostMapping("/add")
 	public String addNewUser(User user) {
 		// 註冊後自動登入
@@ -42,8 +54,10 @@ public class UserController {
 	}
 
 	@GetMapping("/reset-password")
-	public String changePasswordPage() {
-		return "forgotPassword";
+	public String changePasswordPage(Model model) {
+		model.addAttribute("showNavigator","N");
+		model.addAttribute("showFooter","N");
+		return "account/forgotPassword";
 	}
 
 	@PostMapping("/resetPassword")

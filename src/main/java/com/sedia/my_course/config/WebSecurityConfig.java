@@ -31,11 +31,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //	        .authorizeRequests() // 定義哪些URL需要被保護、哪些不需要被保護
 //	        .anyRequest() // 任何請求,登錄後可以訪問
 //	        .authenticated();
-	    String[] permittedUrl = {"/", "/index", "/user/login", "/user/add", "/login", "/signup", "/user/reset-password",
+	    String[] permittedUrl = {"/", "/index", "/user/login", "/user/login.do", "/user/add", "/user/signup", "/user/reset-password",
 		    "/user/resetPassword", "/user/changePassword", "/user/savePassword", "/test**"};
 	    http.formLogin()
-		    .loginPage("/login?flag=1")
-		    .loginProcessingUrl("/user/login")
+		    .loginPage("/user/login")
+		    .loginProcessingUrl("/user/login.do")
 		    .defaultSuccessUrl("/").permitAll()
 		    .failureUrl("/error")
 		    .and()
