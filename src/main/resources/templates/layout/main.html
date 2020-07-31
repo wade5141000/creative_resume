@@ -31,9 +31,9 @@
 </head>
 <body>
 	<div>
-		<div th:include="layout/navigator"></div>
+		<div th:if="${showNavigator != 'N'}" th:include="layout/navigator"></div>
 		<th:block layout:fragment="content"/>
-		<div th:include="layout/footer"></div>
+		<div th:if="${showFooter != 'N'}" th:include="layout/footer"></div>
 	</div>
 
 	<script>
