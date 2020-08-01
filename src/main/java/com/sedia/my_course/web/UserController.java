@@ -35,7 +35,9 @@ public class UserController {
 	}
 
 	@GetMapping("/signup")
-	public String signUp(){
+	public String signUp(Model model){
+		model.addAttribute("showNavigator","N");
+		model.addAttribute("showFooter","N");
 		return "account/signup";
 	}
 
@@ -79,7 +81,9 @@ public class UserController {
 			return "redirect:/error";
 		} else {
 			model.addAttribute("token", token);
-			return "updatePassword";
+			model.addAttribute("showNavigator","N");
+			model.addAttribute("showFooter","N");
+			return "account/updatePassword";
 		}
 	}
 

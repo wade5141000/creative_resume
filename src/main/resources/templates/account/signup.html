@@ -1,38 +1,80 @@
 <!DOCTYPE html>
 <html lang="zh-Hang-TW" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org"
       layout:decorator="layout/main">
-
 	<th:block layout:fragment="content">
-	    <h2>註冊帳號</h2>
-	    <form th:action="@{/user/add}" method="post">
-		    <table>
-			    <tr>
-				    <td><label for="account">帳號: </label></td>
-				    <td><input type="text" id="account" name="account"></td>
-			    </tr>
-			    <tr>
-				    <td><label for="pwd">密碼: </label></td>
-				    <td><input type="password" id="pwd" name="password"></td>
-			    </tr>
-			    <tr>
-				    <td><label for="nickname">姓名: </label></td>
-				    <td><input type="text" id="nickname" name="nickname"></td>
-			    </tr>
-			    <tr>
-				    <td><label for="email">email: </label></td>
-				    <td><input type="email" id="email" name="email"></td>
-			    </tr>
-			    <tr>
-				    <td><label for="school">學校: </label></td>
-				    <td><input type="text" id="school" name="school"></td>
-			    </tr>
-			    <tr>
-				    <td><label for="department">科系: </label></td>
-				    <td><input type="text" id="department" name="department"></td>
-			    </tr>
-		    </table>
-		    <button type="submit">確定</button>
-	    </form>
+		<div class="account-pages"></div>
+		<div class="clearfix"></div>
+		<div class="wrapper-page">
+			<div class=" card-box">
+				<div class="panel-heading">
+					<h3 class="text-center"> 註冊 <strong class="text-custom">myCourse</strong> </h3>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal m-t-20" th:action="@{/user/add}" method="post">
+						<div class="form-group ">
+							<div class="col-xs-12">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+									<input type="email" name="email" class="form-control" placeholder="Email">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<div class="col-xs-12">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user"></i></span>
+									<input type="text" name="account" class="form-control" placeholder="帳號(限4-16英文數字符號)">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<div class="col-xs-12">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+									<input type="password" name="password" class="form-control" placeholder="密碼(限4-16英文數字符號)">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<div class="col-xs-12">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+									<input type="password" name="#" class="form-control" placeholder="再次輸入密碼">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<div class="checkbox checkbox-primary">
+									<input id="checkbox-signup" type="checkbox" checked="checked">
+									<label for="checkbox-signup">註冊即同意<a href="#">隱私權政策</a>及<a href="#">使用者條款</a></label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group text-center m-t-40">
+							<div class="col-xs-12">
+								<button class="btn btn-default btn-block text-uppercase waves-effect waves-light" type="submit">
+									註冊
+								</button>
+							</div>
+						</div>
+					</form>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12 text-center">
+					<p>
+						已註冊<a href="" class="text-custom m-l-5"><b>請登入</b></a>
+					</p>
+				</div>
+			</div>
+
+		</div>
 	</th:block>
 
 </html>
