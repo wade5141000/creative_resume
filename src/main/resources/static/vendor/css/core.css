@@ -1344,7 +1344,7 @@ body.fixed-left .side-menu.left {
 .side-menu-sm #sidebar-menu ul ul a {
   padding: 10px 20px 10px 20px;
 }
-.side-menu-sm + .content-page .footer {
+.side-menu-sm + .content-page + .footer {
   left: 180px;
 }
 #wrapper.enlarged .side-menu-sm {

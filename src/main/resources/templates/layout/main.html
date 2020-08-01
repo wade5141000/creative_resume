@@ -29,11 +29,13 @@
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	<![endif]-->
 </head>
-<body>
-	<div>
-		<div th:if="${showNavigator != 'N'}" th:include="layout/navigator"></div>
+<body class="fixed-left">
+	<!-- Begin page -->
+	<div id="wrapper">
+		<div th:if="${showNavigator != 'N'}" th:include="layout/topbar" class="topbar"></div>
+		<div th:if="${showNavigator != 'N'}" th:include="layout/sidebar" class="left side-menu side-menu-sm"></div>
 		<th:block layout:fragment="content"/>
-		<div th:if="${showFooter != 'N'}" th:include="layout/footer"></div>
+		<div th:if="${showFooter != 'N'}" th:include="layout/footer" class="footer"></div>
 	</div>
 
 	<script>
@@ -51,6 +53,8 @@
 	<script th:src="@{/vendor/js/wow.min.js}"></script>
 	<script th:src="@{/vendor/js/jquery.nicescroll.js}"></script>
 	<script th:src="@{/vendor/js/jquery.scrollTo.min.js}"></script>
+	<script th:src="@{/vendor/pages/jquery.dashboard.js}"></script>
+	<script th:src="@{/vendor/pages/jquery.widgets.js}"></script>
 	<script th:src="@{/vendor/js/jquery.core.js}"></script>
 	<script th:src="@{/vendor/js/jquery.app.js}"></script>
 	<script th:src="@{/js/all.js}"></script>
