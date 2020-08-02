@@ -29,14 +29,16 @@ public class UserController {
 
 	@GetMapping("/login")
 	public String loginPage(Model model){
-		model.addAttribute("showNavigator","N");
+		model.addAttribute("showTopbar","N");
+		model.addAttribute("showSidebar","N");
 		model.addAttribute("showFooter","N");
 		return "account/login";
 	}
 
 	@GetMapping("/signup")
 	public String signUp(Model model){
-		model.addAttribute("showNavigator","N");
+		model.addAttribute("showTopbar","N");
+		model.addAttribute("showSidebar","N");
 		model.addAttribute("showFooter","N");
 		return "account/signup";
 	}
@@ -57,7 +59,8 @@ public class UserController {
 
 	@GetMapping("/reset-password")
 	public String changePasswordPage(Model model) {
-		model.addAttribute("showNavigator","N");
+		model.addAttribute("showTopbar","N");
+		model.addAttribute("showSidebar","N");
 		model.addAttribute("showFooter","N");
 		return "account/forgotPassword";
 	}
@@ -81,7 +84,8 @@ public class UserController {
 			return "redirect:/error";
 		} else {
 			model.addAttribute("token", token);
-			model.addAttribute("showNavigator","N");
+			model.addAttribute("showTopbar","N");
+			model.addAttribute("showSidebar","N");
 			model.addAttribute("showFooter","N");
 			return "account/updatePassword";
 		}

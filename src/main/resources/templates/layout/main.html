@@ -32,10 +32,10 @@
 <body class="fixed-left">
 	<!-- Begin page -->
 	<div id="wrapper">
-		<div th:if="${showNavigator != 'N'}" th:include="layout/topbar" class="topbar"></div>
-		<div th:if="${showNavigator != 'N'}" th:include="layout/sidebar" class="left side-menu side-menu-sm"></div>
+		<div th:if="${showTopbar != 'N'}" th:include="layout/topbar" class="topbar"></div>
+		<div th:if="${showSidebar != 'N'}" th:include="layout/sidebar" class="left side-menu side-menu-sm"></div>
 		<th:block layout:fragment="content"/>
-		<div th:if="${showFooter != 'N'}" th:include="layout/footer" class="footer"></div>
+		<footer th:if="${showFooter != 'N'}" th:include="layout/footer" class="container footer"></footer>
 	</div>
 
 	<script>

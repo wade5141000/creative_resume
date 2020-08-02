@@ -10,9 +10,23 @@ import org.springframework.web.server.ResponseStatusException;
 public class HomeController {
 
 	@GetMapping({"/", "/index"})
-	public String index(){
+	public String indexPage(){
 		return "index";
 	}
+
+	@GetMapping("/privacy")
+	public String privacyPage(Model model){
+		model.addAttribute("showSidebar","N");
+		return "policy/privacy";
+	}
+
+	@GetMapping("/terms")
+	public String termsPage(Model model){
+		model.addAttribute("showSidebar","N");
+		return "policy/terms";
+	}
+
+
 
 	@GetMapping("/test")
 	public String test(Model model){

@@ -89,6 +89,10 @@ a:focus {
   right: 0px;
   left: 240px;
 }
+.topbar + .content-page + .footer{
+  left: 0px;
+  bottom: auto;
+}
 #wrapper {
   height: 100%;
   overflow: hidden;
@@ -100,6 +104,9 @@ a:focus {
   right: 0;
   top: 0;
 }
+/* .page .content{
+  padding: 15px;
+} */
 /* Page titles */
 .page-title {
   font-size: 20px;
@@ -456,7 +463,7 @@ File: Bootstrap-custom
 }
 /* Background colors */
 .bg-custom {
-  background-color: #5fbeaa !important;
+  background-color: #5f78be !important;
 }
 .bg-primary {
   background-color: #5d9cec !important;
@@ -1131,6 +1138,7 @@ File: Topbar,Left-sidebar,Right-sidebar
 }
 .nav > li > a i {
   font-size: 16px;
+  margin-right:5px;
 }
 .profile img {
   border: 2px solid #edf0f0;
@@ -1209,6 +1217,9 @@ body.fixed-left .side-menu.left {
 .content-page {
   margin-left: 240px;
   overflow: hidden;
+}
+.topbar + .content-page {
+  margin: 80px 20px 20px 20px;
 }
 .content-page > .content {
   margin-bottom: 60px;
@@ -1470,8 +1481,14 @@ body.fixed-left .side-menu.left {
 #wrapper.enlarged .content-page {
   margin-left: 70px;
 }
+#wrapper.enlarged .topbar +.content-page {
+  margin-left: 20px;
+}
 #wrapper.enlarged .footer {
   left: 70px;
+}
+#wrapper.enlarged .topbar + .content-page + .footer {
+  left: 0;
 }
 #wrapper.enlarged .topbar .topbar-left {
   width: 70px !important;
