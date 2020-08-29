@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
-    課程
+ * 課程
  */
 @Entity
 @Getter

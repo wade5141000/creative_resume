@@ -11,10 +11,10 @@ public class GlobalController {
 
 	// 登入使用者加到model
 	@ModelAttribute
-	public void addAttributes(Model model, Authentication authentication){
-		if(authentication != null){
+	public void addAttributes(Model model, Authentication authentication) {
+		if (authentication != null) {
 			User user = (User) authentication.getPrincipal();
-			model.addAttribute("user",user);
+			model.addAttribute("user", user);
 		}
 	}
 

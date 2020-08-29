@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class WebErrorController implements ErrorController {
 
-	@RequestMapping("/error")
+	private static final String ERROR_PATH = "/error";
+
+	@RequestMapping(ERROR_PATH)
 	public String handleError(HttpServletRequest request, Model model) {
 		Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
 		model.addAttribute("status", statusCode);
@@ -19,6 +21,6 @@ public class WebErrorController implements ErrorController {
 
 	@Override
 	public String getErrorPath() {
-		return "/error";
+		return ERROR_PATH;
 	}
 }

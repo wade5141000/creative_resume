@@ -1,9 +1,9 @@
-package com.sedia.my_course.dao;
+package com.sedia.my_course.repository;
 
 import com.sedia.my_course.entity.user.PasswordResetToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PasswordResetTokenDao extends JpaRepository<PasswordResetToken, Long> {
+public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetToken, Long> {
 
 	PasswordResetToken getPasswordResetTokenByToken(String token);
 

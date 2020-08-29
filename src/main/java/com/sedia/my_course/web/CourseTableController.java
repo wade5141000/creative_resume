@@ -4,6 +4,7 @@ import com.sedia.my_course.entity.CourseTable;
 import com.sedia.my_course.entity.user.User;
 import com.sedia.my_course.service.CourseService;
 import com.sedia.my_course.service.CourseTableService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +13,11 @@ import javax.annotation.Resource;
 
 @Controller
 @RequestMapping("/course-table")
+@RequiredArgsConstructor
 public class CourseTableController {
 
-	@Resource
-	private CourseTableService courseTableService;
-	@Resource
-	private CourseService courseService;
+	final CourseTableService courseTableService;
+	final CourseService courseService;
 
 	@GetMapping("/add")
 	public String addCourseTablePage(Model model){

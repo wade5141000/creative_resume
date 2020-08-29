@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
-	使用者權限
+ * 使用者權限
  */
 @Entity
 @Getter
@@ -26,7 +26,7 @@ public class UserRole implements GrantedAuthority {
 	// 使用者角色
 	private String role;
 
-	public UserRole(String role){
+	public UserRole(String role) {
 		this.role = role;
 	}
 

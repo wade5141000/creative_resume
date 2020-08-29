@@ -20,8 +20,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Resource(name = "customUserDetailsService")
 	private UserDetailsService userDetailsService;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
 //		直接通過security，無須驗證
 //	    http.authorizeRequests()
 //		    .antMatchers("/**")
@@ -31,40 +31,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //	        .authorizeRequests() // 定義哪些URL需要被保護、哪些不需要被保護
 //	        .anyRequest() // 任何請求,登錄後可以訪問
 //	        .authenticated();
-	    String[] permittedUrl = {"/", "/index", "/user/login", "/user/login.do", "/user/add", "/user/signup", "/user/reset-password",
-		    "/user/resetPassword", "/user/changePassword", "/user/savePassword", "/test**"};
-	    http.formLogin()
-		    .loginPage("/user/login")
-		    .loginProcessingUrl("/user/login.do")
-		    .defaultSuccessUrl("/").permitAll()
-		    .failureUrl("/error")
-		    .and()
-		    .logout()
-		    .logoutUrl("/logout")
-		    .logoutSuccessUrl("/")
-		    .and()
-		    .authorizeRequests()
-		    .antMatchers(permittedUrl).permitAll()
-		    .anyRequest().authenticated()
-		    .and().csrf().disable();
+		String[] permittedUrl = {"/", "/index", "/user/login", "/user/login.do", "/user/add", "/user/signup", "/user/reset-password",
+			"/user/resetPassword", "/user/changePassword", "/user/savePassword", "/test**"};
+		http.formLogin()
+			.loginPage("/user/login")
+			.loginProcessingUrl("/user/login.do")
+			.defaultSuccessUrl("/").permitAll()
+			.failureUrl("/error")
+			.and()
+			.logout()
+			.logoutUrl("/logout")
+			.logoutSuccessUrl("/")
+			.and()
+			.authorizeRequests()
+			.antMatchers(permittedUrl).permitAll()
+			.anyRequest().authenticated()
+			.and().csrf().disable();
 
-    }
+	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    	auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
-    	return new BCryptPasswordEncoder();
-    }
+		return new BCryptPasswordEncoder();
+	}
 
 	@Override
 	public void configure(WebSecurity web) {
-    	String[] ignore = {"/webjars/**/*", "/css/**", "/js/**", "/vendor/**"};
-    	web.ignoring().antMatchers(ignore);
-    }
+		String[] ignore = {"/webjars/**/*", "/css/**", "/js/**", "/vendor/**"};
+		web.ignoring().antMatchers(ignore);
+	}
 
 	@Bean
 	@Override

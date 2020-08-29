@@ -7,23 +7,23 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
-    課表
+ * 課表
  */
 @Entity
 @Getter
 @Setter
 public class CourseTable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer courseTableId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer courseTableId;
 	// 課表名稱
-    private String courseTableName;
-    // 一周哪幾天排課 星期一,星期二,星期三
-    private String days;
+	private String courseTableName;
+	// 一周哪幾天排課 星期一,星期二,星期三
+	private String days;
 	// 課表顯示幾節課
 	private String lessons;
-    // 課程
+	// 課程
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    @JoinTable(
 //	    name="course_table_and_course",
@@ -31,8 +31,8 @@ public class CourseTable {
 //	    inverseJoinColumns={@JoinColumn(name="COURSE_FK")}
 //    )
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="COURSE_TABLE_ID_FK")
-    private List<Course> courses;
+	@JoinColumn(name = "COURSE_TABLE_ID_FK")
+	private List<Course> courses;
 
 
 }

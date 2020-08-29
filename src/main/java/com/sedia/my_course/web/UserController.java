@@ -4,6 +4,7 @@ import com.sedia.my_course.dto.GenericResponse;
 import com.sedia.my_course.dto.PasswordDto;
 import com.sedia.my_course.entity.user.User;
 import com.sedia.my_course.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,29 +18,25 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
 
-	@Resource
-	private UserService userService;
-
-	@Resource JavaMailSender mailSender;
-
-	@Resource
-	protected AuthenticationManager authenticationManager;
+	final UserService userService;
+	final AuthenticationManager authenticationManager;
 
 	@GetMapping("/login")
-	public String loginPage(Model model){
-		model.addAttribute("showTopbar","N");
-		model.addAttribute("showSidebar","N");
-		model.addAttribute("showFooter","N");
+	public String loginPage(Model model) {
+		model.addAttribute("showTopbar", "N");
+		model.addAttribute("showSidebar", "N");
+		model.addAttribute("showFooter", "N");
 		return "account/login";
 	}
 
 	@GetMapping("/signup")
-	public String signUp(Model model){
-		model.addAttribute("showTopbar","N");
-		model.addAttribute("showSidebar","N");
-		model.addAttribute("showFooter","N");
+	public String signUp(Model model) {
+		model.addAttribute("showTopbar", "N");
+		model.addAttribute("showSidebar", "N");
+		model.addAttribute("showFooter", "N");
 		return "account/signup";
 	}
 
@@ -59,34 +56,35 @@ public class UserController {
 
 	@GetMapping("/reset-password")
 	public String changePasswordPage(Model model) {
-		model.addAttribute("showTopbar","N");
-		model.addAttribute("showSidebar","N");
-		model.addAttribute("showFooter","N");
+		model.addAttribute("showTopbar", "N");
+		model.addAttribute("showSidebar", "N");
+		model.addAttribute("showFooter", "N");
 		return "account/forgotPassword";
 	}
 
 	@PostMapping("/resetPassword")
-	public @ResponseBody GenericResponse resetPassword(HttpServletRequest request,
-	                                     @RequestParam("email") String userEmail) throws Exception {
+	public @ResponseBody
+	GenericResponse resetPassword(HttpServletRequest request,
+	                              @RequestParam("email") String userEmail) throws Exception {
 		User user = userService.getUserByEmail(userEmail);
 		if (user == null) {
 			throw new Exception();
 		}
 		userService.createPasswordResetTokenForUser(user, request);
-		return new GenericResponse<>("aaa",request.getLocale());
+		return new GenericResponse<>("aaa", request.getLocale());
 	}
 
 	@GetMapping("/changePassword")
 	public String showChangePasswordPage(Model model, @RequestParam("token") String token) {
 		String result = userService.validatePasswordResetToken(token);
-		if(result != null) {
+		if (result != null) {
 			System.out.println("validatePasswordResetToken fail: " + result);
 			return "redirect:/error";
 		} else {
 			model.addAttribute("token", token);
-			model.addAttribute("showTopbar","N");
-			model.addAttribute("showSidebar","N");
-			model.addAttribute("showFooter","N");
+			model.addAttribute("showTopbar", "N");
+			model.addAttribute("showSidebar", "N");
+			model.addAttribute("showFooter", "N");
 			return "account/updatePassword";
 		}
 	}
@@ -95,7 +93,7 @@ public class UserController {
 	public String savePassword(PasswordDto passwordDto) {
 		String result = userService.validatePasswordResetToken(passwordDto.getToken());
 
-		if(result != null) {
+		if (result != null) {
 			System.out.println("validatePasswordResetToken fail: " + result);
 			return "redirect:/error";
 		}
@@ -104,10 +102,10 @@ public class UserController {
 	}
 
 	@GetMapping("/all")
-	public @ResponseBody Iterable<User> getAllUsers() {
+	public @ResponseBody
+	Iterable<User> getAllUsers() {
 		return userService.getAllUsers();
 	}
-
 
 
 }
