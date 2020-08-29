@@ -4,23 +4,25 @@
 
 	<th:block layout:fragment="content">
 		<script th:src="@{/js/course_table/course_table.js}"></script>
-		<label for="courseSelect">課程清單</label>
-		<select id="courseSelect">
-			<option th:each="course:${courses}"
-			        th:text="${course.courseName}" th:value="${course.courseId}"></option>
-		</select>
+		<div style="margin-top: 80px;margin-left: 180px">
+			<label for="courseSelect">課程清單</label>
+			<select id="courseSelect">
+				<option th:each="course:${courses}"
+						th:text="${course.courseName}" th:value="${course.courseId}"></option>
+			</select>
 
-		<br>
-		<button id="addCourseToCourseTable">新增課程到課表</button>
-		<table>
-			<tr>
-				<td>table id: </td>
-				<td id="courseTableId" th:text="${courseTable.courseTableId}"></td>
-			</tr>
-			<tr>
-				<td>table name: </td>
-				<td th:text="${courseTable.courseTableName}"></td>
-			</tr>
-		</table>
+			<br>
+			<button id="addCourseToCourseTable">新增課程到課表</button>
+			<table>
+				<tr>
+					<td>table id: </td>
+					<td id="courseTableId" th:text="${courseTable.courseTableId}"></td>
+				</tr>
+				<tr>
+					<td>table name: </td>
+					<td th:text="${courseTable.courseTableName}"></td>
+				</tr>
+			</table>
+		</div>
 	</th:block>
 </html>

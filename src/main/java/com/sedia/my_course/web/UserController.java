@@ -5,7 +5,7 @@ import com.sedia.my_course.dto.PasswordDto;
 import com.sedia.my_course.entity.user.User;
 import com.sedia.my_course.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.mail.javamail.JavaMailSender;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,12 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
 
 	final UserService userService;
@@ -78,7 +79,7 @@ public class UserController {
 	public String showChangePasswordPage(Model model, @RequestParam("token") String token) {
 		String result = userService.validatePasswordResetToken(token);
 		if (result != null) {
-			System.out.println("validatePasswordResetToken fail: " + result);
+			log.error("validatePasswordResetToken fail: " + result);
 			return "redirect:/error";
 		} else {
 			model.addAttribute("token", token);
@@ -94,7 +95,7 @@ public class UserController {
 		String result = userService.validatePasswordResetToken(passwordDto.getToken());
 
 		if (result != null) {
-			System.out.println("validatePasswordResetToken fail: " + result);
+			log.error("validatePasswordResetToken fail: " + result);
 			return "redirect:/error";
 		}
 		userService.changeUserPassword(passwordDto);
@@ -102,8 +103,7 @@ public class UserController {
 	}
 
 	@GetMapping("/all")
-	public @ResponseBody
-	Iterable<User> getAllUsers() {
+	public @ResponseBody List<User> getAllUsers() {
 		return userService.getAllUsers();
 	}
 

@@ -1,11 +1,11 @@
 package com.sedia.my_course.service;
 
-import com.sedia.my_course.repository.PasswordResetTokenRepository;
-import com.sedia.my_course.repository.UserRepository;
 import com.sedia.my_course.dto.PasswordDto;
 import com.sedia.my_course.entity.user.PasswordResetToken;
 import com.sedia.my_course.entity.user.User;
 import com.sedia.my_course.entity.user.UserRole;
+import com.sedia.my_course.repository.PasswordResetTokenRepository;
+import com.sedia.my_course.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.mail.SimpleMailMessage;
@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.time.LocalDateTime;
@@ -44,7 +43,7 @@ public class UserService {
 		}
 	}
 
-	public Iterable<User> getAllUsers() {
+	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
 

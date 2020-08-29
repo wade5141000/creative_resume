@@ -3,39 +3,39 @@
       layout:decorator="layout/main">
 
 <th:block layout:fragment="content">
-	<script th:src="@{/js/course/course.js}"></script>
-	<div style="margin-top: 80px;margin-left: 180px">
-		<h2>新增課程</h2>
-		<form id="addForm">
-			<table>
-				<tr>
-					<td><label for="courseName">課程名稱</label></td>
-					<td><input type="text" name="courseName" id="courseName"></td>
-				</tr>
-				<tr>
-					<td><label for="courseNumber">課程代碼</label></td>
-					<td><input type="text" name="courseNumber" id="courseNumber"></td>
-				</tr>
-				<tr>
-					<td><label for="type">選別</label></td>
-					<td><input type="text" name="type" id="type"></td>
-				</tr>
-				<tr>
-					<td><label for="units">學分(輸入數字)</label></td>
-					<td><input type="text" name="units" id="units"></td>
-				</tr>
-			</table>
-		</form>
-		<button id="confirm">確定</button>
+  <script th:src="@{/js/course/course.js}"></script>
+  <div style="margin-top: 80px;margin-left: 180px">
+    <h2>新增課程</h2>
+    <form id="addForm">
+      <table>
+        <tr>
+          <td><label for="courseName">課程名稱</label></td>
+          <td><input type="text" name="courseName" id="courseName"></td>
+        </tr>
+        <tr>
+          <td><label for="courseNumber">課程代碼</label></td>
+          <td><input type="text" name="courseNumber" id="courseNumber"></td>
+        </tr>
+        <tr>
+          <td><label for="type">選別</label></td>
+          <td><input type="text" name="type" id="type"></td>
+        </tr>
+        <tr>
+          <td><label for="units">學分(輸入數字)</label></td>
+          <td><input type="text" name="units" id="units"></td>
+        </tr>
+      </table>
+    </form>
+    <button id="confirm">確定</button>
 
-		<table>
-			<tr th:each="course:${course}">
-				<td th:text="${course.courseId}" style="padding: 5px"></td>
-				<td th:text="${course.courseName}" style="padding: 5px"></td>
-				<td th:text="${course.units}" style="padding: 5px"></td>
-			</tr>
-		</table>
-	</div>
+    <table>
+      <tr th:each="course:${course}">
+        <td th:text="${course.courseId}" style="padding: 5px"></td>
+        <td th:text="${course.courseName}" style="padding: 5px"></td>
+        <td th:text="${course.units}" style="padding: 5px"></td>
+      </tr>
+    </table>
+  </div>
 
 </th:block>
 

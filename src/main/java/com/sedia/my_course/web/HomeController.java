@@ -1,19 +1,13 @@
 package com.sedia.my_course.web;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.server.ResponseStatusException;
 
 @Controller
+@Slf4j
 public class HomeController {
-
-	@GetMapping({"/", "/index"})
-	public String indexPage() {
-		return "index";
-	}
 
 	@GetMapping("/privacy")
 	public String privacyPage(Model model) {
@@ -27,7 +21,6 @@ public class HomeController {
 		return "policy/terms";
 	}
 
-
 	@GetMapping("/test")
 	public String test(Model model) {
 		model.addAttribute("showNavigator", "N");
@@ -37,16 +30,11 @@ public class HomeController {
 
 	@GetMapping("/test2")
 	public String test2(Model model) {
-		System.out.println("test2");
+		log.info("test2");
 		Object obj = null;
 		obj.equals("xxx");
 		return "xxx";
-	}
-
-	@GetMapping("/test3")
-	public String test3(Model model) {
-		System.out.println("test3");
-		throw new ResponseStatusException(HttpStatus.FORBIDDEN, "你沒有權限");
+//		throw new ResponseStatusException(HttpStatus.FORBIDDEN, "你沒有權限");
 	}
 
 }
