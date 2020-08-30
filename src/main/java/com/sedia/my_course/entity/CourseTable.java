@@ -1,7 +1,6 @@
 package com.sedia.my_course.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,8 +9,7 @@ import java.util.List;
  * 課表
  */
 @Entity
-@Getter
-@Setter
+@Data
 public class CourseTable {
 
 	@Id

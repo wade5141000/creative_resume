@@ -2,20 +2,19 @@ package com.sedia.my_course.entity.user;
 
 import com.sedia.my_course.entity.Course;
 import com.sedia.my_course.entity.CourseTable;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * 使用者
  */
 @Entity
-@Getter
-@Setter
 @Table(name = "all_user")
+@Data
 public class User implements UserDetails {
 
 	@Id
@@ -34,6 +33,8 @@ public class User implements UserDetails {
 	private String department;
 	// email
 	private String email;
+	// 註冊時間
+	private LocalDateTime createTime;
 	// 課表
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID_FK")
@@ -47,6 +48,10 @@ public class User implements UserDetails {
 	@JoinColumn(name = "USER_ID_FK")
 	private List<UserRole> authorities;
 
+	@PrePersist
+	void createAt(){
+		createTime = LocalDateTime.now();
+	}
 
 	@Override
 	public String getUsername() {

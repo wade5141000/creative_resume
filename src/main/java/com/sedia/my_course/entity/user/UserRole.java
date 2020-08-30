@@ -1,9 +1,8 @@
 package com.sedia.my_course.entity.user;
 
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
@@ -15,8 +14,7 @@ import javax.persistence.Id;
  * 使用者權限
  */
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class UserRole implements GrantedAuthority {
 

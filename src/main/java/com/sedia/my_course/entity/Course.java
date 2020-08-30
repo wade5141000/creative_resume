@@ -1,7 +1,6 @@
 package com.sedia.my_course.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +11,7 @@ import javax.persistence.Id;
  * 課程
  */
 @Entity
-@Getter
-@Setter
+@Data
 public class Course {
 
 	@Id

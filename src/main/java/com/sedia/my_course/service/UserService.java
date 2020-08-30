@@ -32,7 +32,7 @@ public class UserService {
 
 	@SneakyThrows
 	public void addNewUser(User user) {
-		if (userRepository.getUserByAccount(user.getAccount()) == null) {
+		if (userRepository.findUserByAccount(user.getAccount()) == null) {
 			user.setPassword(encryptPassword(user.getPassword()));
 			List<UserRole> authorities = new ArrayList<>();
 			authorities.add(new UserRole("GENERAL"));
@@ -48,7 +48,7 @@ public class UserService {
 	}
 
 	public User getUserByEmail(String email) {
-		return userRepository.getUserByEmail(email);
+		return userRepository.findUserByEmail(email);
 	}
 
 	public void createPasswordResetTokenForUser(User user, HttpServletRequest request) {
@@ -60,14 +60,14 @@ public class UserService {
 	}
 
 	public String validatePasswordResetToken(String token) {
-		PasswordResetToken passToken = passwordResetTokenRepository.getPasswordResetTokenByToken(token);
+		PasswordResetToken passToken = passwordResetTokenRepository.findPasswordResetTokenByToken(token);
 		return !isTokenFound(passToken) ? "invalidToken"
 			: isTokenExpired(passToken) ? "expired"
 			: null;
 	}
 
 	public User getUserByPasswordResetToken(String token) {
-		return passwordResetTokenRepository.getPasswordResetTokenByToken(token).getUser();
+		return passwordResetTokenRepository.findPasswordResetTokenByToken(token).getUser();
 	}
 
 	public void changeUserPassword(PasswordDto passwordDto) {
