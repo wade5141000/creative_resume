@@ -1,5 +1,6 @@
 package com.sedia.my_course.config;
 
+import com.sedia.my_course.service.CustomUserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -8,7 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.annotation.Resource;
@@ -17,35 +17,25 @@ import javax.annotation.Resource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Resource(name = "customUserDetailsService")
-	private UserDetailsService userDetailsService;
+	@Resource
+	private CustomUserDetailService userDetailsService;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		直接通過security，無須驗證
-//	    http.authorizeRequests()
-//		    .antMatchers("/**")
-//		    .permitAll();
-//        http.formLogin() // 定義當需要提交表單進行用戶登錄時候，轉到的登錄頁面。
-//	        .and()
-//	        .authorizeRequests() // 定義哪些URL需要被保護、哪些不需要被保護
-//	        .anyRequest() // 任何請求,登錄後可以訪問
-//	        .authenticated();
-		String[] permittedUrl = {"/", "/index", "/user/login", "/user/login.do", "/user/add", "/user/signup", "/user/reset-password",
-			"/user/resetPassword", "/user/changePassword", "/user/savePassword", "/test**"};
-		http.formLogin()
+		String[] needAuthUrls = {"/course/**", "/course-table/**", "/dashboard/**"};
+		http.authorizeRequests()
+			.antMatchers(needAuthUrls).authenticated()
+			.anyRequest().permitAll()
+			.and()
+			.formLogin()
 			.loginPage("/user/login")
 			.loginProcessingUrl("/user/login.do")
-			.defaultSuccessUrl("/").permitAll()
-			.failureUrl("/error")
+			.defaultSuccessUrl("/")
+			.failureUrl("/error") // TODO 換成登入失敗畫面
 			.and()
 			.logout()
 			.logoutUrl("/logout")
 			.logoutSuccessUrl("/")
-			.and()
-			.authorizeRequests()
-			.antMatchers(permittedUrl).permitAll()
-			.anyRequest().authenticated()
 			.and().csrf().disable();
 
 	}

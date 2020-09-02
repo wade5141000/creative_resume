@@ -14,8 +14,8 @@ public class WebErrorController implements ErrorController {
 
 	@RequestMapping(ERROR_PATH)
 	public String handleError(HttpServletRequest request, Model model) {
-		Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-		model.addAttribute("status", statusCode);
+//		Integer statusCode = (Integer) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+//		model.addAttribute("status", statusCode);
 		return "error/error_page";
 	}
 

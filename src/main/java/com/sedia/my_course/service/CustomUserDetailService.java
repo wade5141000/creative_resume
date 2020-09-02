@@ -1,4 +1,4 @@
-package com.sedia.my_course.config;
+package com.sedia.my_course.service;
 
 
 import com.sedia.my_course.repository.UserRepository;
@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service("customUserDetailsService")
+@Service
 @RequiredArgsConstructor
-public class UserDetailServiceImpl implements UserDetailsService {
+public class CustomUserDetailService implements UserDetailsService {
 
 	final UserRepository userRepository;
 

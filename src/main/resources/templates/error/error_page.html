@@ -4,7 +4,7 @@
 
 <th:block layout:fragment="content">
   <div style="margin-top: 80px;margin-left: 180px">
-    <h1 th:text="${'操作失敗，請重新操作，錯誤代碼：' + status}"></h1>
+    <h1 th:text="${'操作失敗，請重新操作，錯誤代碼：' + #request.getAttribute('javax.servlet.error.status_code')}"></h1>
     <a th:href="@{/}">回首頁</a><br>
   </div>
 </th:block>
