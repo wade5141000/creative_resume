@@ -7,8 +7,6 @@ import com.sedia.my_course.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -43,16 +41,9 @@ public class UserController {
 
 	@PostMapping("/add")
 	public String addNewUser(User user) {
-		// 註冊後自動登入
 		// TODO 註冊email不可重複
-		UsernamePasswordAuthenticationToken token =
-			new UsernamePasswordAuthenticationToken(user.getAccount(), user.getPassword());
-		// 存入DB
 		userService.addNewUser(user);
-
-		authenticationManager.authenticate(token);
-		SecurityContextHolder.getContext().setAuthentication(token);
-		return "redirect:/";
+		return "redirect:/user/login";
 	}
 
 	@GetMapping("/reset-password")

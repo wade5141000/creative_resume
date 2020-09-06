@@ -130,6 +130,12 @@
               <i class="fa fa-book"></i>註冊
             </a>
           </li>
+          <li>
+            <a href="#" onclick="document.getElementById('logoutForm').submit()">
+              <i class="fa fa-sign-out"></i>登出
+            </a>
+            <form th:action="@{/logout}" method="post" id="logoutForm"></form>
+          </li>
         </ul>
       </div>
       <!--/.nav-collapse -->

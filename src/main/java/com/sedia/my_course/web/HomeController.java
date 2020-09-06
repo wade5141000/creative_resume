@@ -25,7 +25,7 @@ public class HomeController {
 	public String test(Model model) {
 		model.addAttribute("showNavigator", "N");
 		model.addAttribute("showFooter", "N");
-		return "login";
+		return "redirect:/user/login";
 	}
 
 	@GetMapping("/test2")
@@ -33,7 +33,7 @@ public class HomeController {
 		log.info("test2");
 		Object obj = null;
 		obj.equals("xxx");
-		return "xxx";
+		return "index";
 //		throw new ResponseStatusException(HttpStatus.FORBIDDEN, "你沒有權限");
 	}
 
