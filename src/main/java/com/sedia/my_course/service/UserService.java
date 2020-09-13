@@ -6,6 +6,7 @@ import com.sedia.my_course.entity.user.User;
 import com.sedia.my_course.entity.user.UserRole;
 import com.sedia.my_course.repository.PasswordResetTokenRepository;
 import com.sedia.my_course.repository.UserRepository;
+import com.sedia.my_course.utils.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.mail.SimpleMailMessage;
@@ -17,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,50 +29,45 @@ public class UserService {
 	final UserRepository userRepository;
 	final PasswordResetTokenRepository passwordResetTokenRepository;
 	final JavaMailSender mailSender;
+	final BCryptPasswordEncoder passwordEncoder;
 
-	@SneakyThrows
 	public void addNewUser(User user) {
-		if (userRepository.findUserByAccount(user.getAccount()) == null) {
-			user.setPassword(encryptPassword(user.getPassword()));
-			List<UserRole> authorities = new ArrayList<>();
-			authorities.add(new UserRole("GENERAL"));
-			user.setAuthorities(authorities);
+		if (!userRepository.existsByAccount(user.getAccount()) && !userRepository.existsByEmail(user.getEmail())) {
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.setAuthorities(List.of(new UserRole("USER")));
 			userRepository.save(user);
-		} else {
-			throw new Exception("account already exists");
+			return;
 		}
-	}
-
-	public List<User> getAllUsers() {
-		return userRepository.findAll();
+		throw new RuntimeException("account or e-mail already exists");
 	}
 
 	public User getUserByEmail(String email) {
-		return userRepository.findUserByEmail(email);
+		return userRepository.findUserByEmail(email)
+				.orElseThrow(ExceptionUtil.nullPointerException("找不到此email的使用者:[" + email + "]"));
 	}
 
 	public void createPasswordResetTokenForUser(User user, HttpServletRequest request) {
 		String token = UUID.randomUUID().toString();
 		PasswordResetToken userToken = new PasswordResetToken(user, token);
 		passwordResetTokenRepository.save(userToken);
-		constructResetTokenEmail(request.getContextPath(), token, user);
 		mailSender.send(constructResetTokenEmail(request.getContextPath(), token, user));
 	}
 
-	public String validatePasswordResetToken(String token) {
-		PasswordResetToken passToken = passwordResetTokenRepository.findPasswordResetTokenByToken(token);
-		return !isTokenFound(passToken) ? "invalidToken"
-			: isTokenExpired(passToken) ? "expired"
-			: null;
+	public boolean validatePasswordResetToken(String token) {
+		return passwordResetTokenRepository.findPasswordResetTokenByToken(token)
+				.map(this::validToken)
+				.orElse(false);
 	}
 
 	public User getUserByPasswordResetToken(String token) {
-		return passwordResetTokenRepository.findPasswordResetTokenByToken(token).getUser();
+		return passwordResetTokenRepository.findPasswordResetTokenByToken(token)
+				.map(PasswordResetToken::getUser)
+				.orElseThrow(ExceptionUtil.nullPointerException("找不到此token的使用者:[" + token + "]"));
 	}
 
 	public void changeUserPassword(PasswordDto passwordDto) {
 		User user = getUserByPasswordResetToken(passwordDto.getToken());
-		user.setPassword(encryptPassword(passwordDto.getPassword()));
+		user.setPassword(passwordEncoder.encode(passwordDto.getPassword()));
 		userRepository.save(user);
 	}
 
@@ -87,15 +82,8 @@ public class UserService {
 		return email;
 	}
 
-	private boolean isTokenFound(PasswordResetToken passToken) {
-		return passToken != null;
+	private boolean validToken(PasswordResetToken passToken) {
+		return LocalDateTime.now().isBefore(passToken.getExpiryDate());
 	}
 
-	private boolean isTokenExpired(PasswordResetToken passToken) {
-		return !(LocalDateTime.now().isBefore(passToken.getExpiryDate()));
-	}
-
-	private String encryptPassword(String password) {
-		return new BCryptPasswordEncoder().encode(password);
-	}
 }

@@ -11,6 +11,7 @@
       </div>
 
       <div class="panel-body">
+        <h5 style="color: red" th:if="${param.error}" th:text="${'登入失敗，請重新輸入。('+session.SPRING_SECURITY_LAST_EXCEPTION.message+')'}"></h5>
         <form class="form-horizontal m-t-20" th:action="@{/user/login.do}" method="post">
 
           <div class="form-group ">

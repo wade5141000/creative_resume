@@ -1,6 +1,7 @@
 package com.sedia.my_course.config;
 
 import com.sedia.my_course.service.CustomUserDetailService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,14 +12,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.annotation.Resource;
-
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Resource
-	private CustomUserDetailService userDetailsService;
+	final CustomUserDetailService userDetailsService;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -31,12 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.loginPage("/user/login")
 			.loginProcessingUrl("/user/login.do")
 			.defaultSuccessUrl("/")
-			.failureUrl("/error") // TODO 換成登入失敗畫面
+			.failureUrl("/user/login?error=true")
 			.and()
 			.logout()
 			.logoutUrl("/logout")
-			.logoutSuccessUrl("/")
-			.and();
+			.logoutSuccessUrl("/");
 	}
 
 	@Override
@@ -44,15 +42,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
 	@Override
 	public void configure(WebSecurity web) {
 		String[] ignore = {"/webjars/**/*", "/css/**", "/js/**", "/vendor/**"};
 		web.ignoring().antMatchers(ignore);
+	}
+
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 
 	@Bean
