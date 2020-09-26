@@ -55,7 +55,7 @@ public class UserController {
 	GenericResponse resetPassword(HttpServletRequest request,
 	                              @RequestParam("email") String userEmail) {
 		User user = userService.getUserByEmail(userEmail);
-		userService.createPasswordResetTokenForUser(user, request);
+		userService.createPasswordResetTokenForUser(user, request.getContextPath());
 		// FIXME return
 		return new GenericResponse<>("已成功發送重置密碼信件", request.getLocale());
 	}
@@ -69,19 +69,20 @@ public class UserController {
 			model.addAttribute("showFooter", "N");
 			return "account/updatePassword";
 		}
-		request.setAttribute("message", "token有誤，請重新操作");
+		request.setAttribute("message", "token錯誤或已被使用。");
 		log.error("Invalid token:{}", token);
-		return "redirect:/error";
+		return "forward:/error";
 	}
 
 	@PostMapping("/savePassword")
-	public String savePassword(PasswordDto passwordDto) {
+	public String savePassword(PasswordDto passwordDto, HttpServletRequest request) {
 		if(userService.validatePasswordResetToken(passwordDto.getToken())) {
 			userService.changeUserPassword(passwordDto);
 			return "redirect:/";
 		}
+		request.setAttribute("message", "token錯誤或已被使用。");
 		log.error("Invalid token:{}", passwordDto.getToken());
-		return "redirect:/error";
+		return "forward:/error";
 	}
 
 

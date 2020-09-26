@@ -9,14 +9,15 @@ import com.sedia.my_course.repository.UserRepository;
 import com.sedia.my_course.utils.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.mail.internet.MimeMessage;
 import java.net.InetAddress;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -46,11 +47,11 @@ public class UserService {
 				.orElseThrow(ExceptionUtil.nullPointerException("找不到此email的使用者:[" + email + "]"));
 	}
 
-	public void createPasswordResetTokenForUser(User user, HttpServletRequest request) {
+	public void createPasswordResetTokenForUser(User user, String contextPath) {
 		String token = UUID.randomUUID().toString();
 		PasswordResetToken userToken = new PasswordResetToken(user, token);
 		passwordResetTokenRepository.save(userToken);
-		mailSender.send(constructResetTokenEmail(request.getContextPath(), token, user));
+		mailSender.send(constructResetTokenEmail(contextPath, token, user));
 	}
 
 	public boolean validatePasswordResetToken(String token) {
@@ -59,31 +60,33 @@ public class UserService {
 				.orElse(false);
 	}
 
-	public User getUserByPasswordResetToken(String token) {
-		return passwordResetTokenRepository.findPasswordResetTokenByToken(token)
-				.map(PasswordResetToken::getUser)
-				.orElseThrow(ExceptionUtil.nullPointerException("找不到此token的使用者:[" + token + "]"));
-	}
-
 	public void changeUserPassword(PasswordDto passwordDto) {
-		User user = getUserByPasswordResetToken(passwordDto.getToken());
+		User user = passwordResetTokenRepository.findPasswordResetTokenByToken(passwordDto.getToken())
+				.stream()
+				.peek(token -> token.setUsed(true))
+				.map(passwordResetTokenRepository::save)
+				.map(PasswordResetToken::getUser)
+				.findAny()
+				.orElseThrow(ExceptionUtil.nullPointerException("找不到此token的使用者:[" + passwordDto.getToken() + "]"));
 		user.setPassword(passwordEncoder.encode(passwordDto.getPassword()));
 		userRepository.save(user);
 	}
 
 	@SneakyThrows
-	private SimpleMailMessage constructResetTokenEmail(String contextPath, String token, User user) {
+	private MimeMessage constructResetTokenEmail(String contextPath, String token, User user) {
 		String ip = InetAddress.getLocalHost().getHostAddress();
+		// FIXME URL
 		String resetUrl = "http://" + ip + ":8080" + contextPath + "/user/changePassword?token=" + token;
-		SimpleMailMessage email = new SimpleMailMessage();
-		email.setSubject("Reset Password");
-		email.setText("請點擊連結重置密碼：" + resetUrl);
-		email.setTo("wade5141000@outlook.com");
-		return email;
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, StandardCharsets.UTF_8.name());
+		helper.setTo("wade5141000@outlook.com");
+		helper.setSubject("Reset Password");
+		helper.setText("<h2>請點擊連結：<a href='" + resetUrl + "'>重置你的密碼</a></h2>",true);
+		return mimeMessage;
 	}
 
 	private boolean validToken(PasswordResetToken passToken) {
-		return LocalDateTime.now().isBefore(passToken.getExpiryDate());
+		return LocalDateTime.now().isBefore(passToken.getExpiryDate()) && !passToken.isUsed();
 	}
 
 }

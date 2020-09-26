@@ -23,6 +23,8 @@ public class PasswordResetToken {
 
 	private LocalDateTime expiryDate;
 
+	private boolean used;
+
 	public PasswordResetToken(User user, String token) {
 		this.user = user;
 		this.token = token;
