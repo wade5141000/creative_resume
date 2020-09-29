@@ -111,8 +111,10 @@ a:focus {
 .page-title {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 0px;
-  margin-top: 7px;
+  margin-bottom: 15px;
+  padding-left: 0px;
+  padding-top: 0px;
+  
 }
 .page-title-alt {
   margin-bottom: 23px;
@@ -693,7 +695,6 @@ textarea.form-control {
 .pagination-split li {
   margin-left: 5px;
   display: inline-block;
-  float: left;
 }
 .pagination-split li:first-child {
   margin-left: 0;
