@@ -52,10 +52,8 @@ public class UserController {
 
 	@PostMapping("/resetPassword")
 	public @ResponseBody
-	GenericResponse resetPassword(HttpServletRequest request,
-	                              @RequestParam("email") String userEmail) {
-		User user = userService.getUserByEmail(userEmail);
-		userService.createPasswordResetTokenForUser(user, request.getContextPath());
+	GenericResponse resetPassword(@RequestParam("email") String email, HttpServletRequest request) {
+		userService.createPasswordResetTokenForUser(email, request.getContextPath());
 		// FIXME return
 		return new GenericResponse<>("已成功發送重置密碼信件", request.getLocale());
 	}

@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
@@ -42,12 +43,9 @@ public class UserService {
 		throw new RuntimeException("account or e-mail already exists");
 	}
 
-	public User getUserByEmail(String email) {
-		return userRepository.findUserByEmail(email)
+	public void createPasswordResetTokenForUser(String email, String contextPath) {
+		User user = userRepository.findUserByEmail(email)
 				.orElseThrow(ExceptionUtil.nullPointerException("找不到此email的使用者:[" + email + "]"));
-	}
-
-	public void createPasswordResetTokenForUser(User user, String contextPath) {
 		String token = UUID.randomUUID().toString();
 		PasswordResetToken userToken = new PasswordResetToken(user, token);
 		passwordResetTokenRepository.save(userToken);
@@ -79,6 +77,7 @@ public class UserService {
 		String resetUrl = "http://" + ip + ":8080" + contextPath + "/user/changePassword?token=" + token;
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, StandardCharsets.UTF_8.name());
+		helper.setFrom(new InternetAddress("myCourse <no-reply@my-course.com>"));
 		helper.setTo("wade5141000@outlook.com");
 		helper.setSubject("Reset Password");
 		helper.setText("<h2>請點擊連結：<a href='" + resetUrl + "'>重置你的密碼</a></h2>",true);

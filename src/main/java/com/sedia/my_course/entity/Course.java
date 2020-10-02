@@ -1,5 +1,6 @@
 package com.sedia.my_course.entity;
 
+import com.sedia.my_course.enums.CourseType;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -19,11 +20,11 @@ public class Course {
 	private Integer courseId;
 	// 課程名稱
 	private String courseName;
-	// 課程代碼
+	// 課程編號
 	private String courseNumber;
-	// 選修、必修、通識
-	private String type;
-	// 抵免、已修、未修
+	// 課程類別：選修、必修、通識
+	private CourseType type;
+	// 課程狀態：抵免、已修、未修
 	private String status;
 	// 學分
 	private Integer units;

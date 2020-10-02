@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-Hang-TW" xmlns:th="http://www.thymeleaf.org" th:fragment="topbar">
+<html lang="zh-Hang-TW" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="topbar">
   <!-- Top Bar Start -->
   <!-- LOGO -->
   <div class="topbar-left">
@@ -120,17 +121,17 @@
               </li>
             </ul>
           </li>
-          <li>
+          <li sec:authorize="!isAuthenticated()">
             <a th:href="@{/user/login}">
               <i class="fa fa-user"></i>登入
             </a>
           </li>
-          <li>
+          <li sec:authorize="!isAuthenticated()">
             <a th:href="@{/user/signup}">
               <i class="fa fa-book"></i>註冊
             </a>
           </li>
-          <li>
+          <li sec:authorize="isAuthenticated()">
             <a href="#" onclick="document.getElementById('logoutForm').submit()">
               <i class="fa fa-sign-out"></i>登出
             </a>
