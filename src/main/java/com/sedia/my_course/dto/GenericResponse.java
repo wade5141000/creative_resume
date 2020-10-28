@@ -19,4 +19,10 @@ public class GenericResponse<T> {
 		this.data = data;
 	}
 
+	public GenericResponse(T data) {
+		this.success = true;
+		this.message = null;
+		this.data = data;
+	}
+
 }

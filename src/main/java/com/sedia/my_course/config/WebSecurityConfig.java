@@ -23,30 +23,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		String[] needAuthUrls = {"/course/**", "/course-table/**", "/dashboard/**"};
+
 
 		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and()
-		.authorizeRequests().antMatchers("/login").permitAll().and()
-		.authorizeRequests().anyRequest().authenticated().and()
+		.authorizeRequests().antMatchers(needAuthUrls).authenticated().anyRequest().permitAll().and()
 		.addFilterBefore(new LoginFilter("/login", authenticationManager()),
 		UsernamePasswordAuthenticationFilter.class)// 添加過濾器，針對/login的請求，交給LoginFilter處理
 		// 添加過濾器，針對其他請求進行JWT的驗證
 		.addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 		.csrf().disable();
 
-//		String[] needAuthUrls = {"/course/**", "/course-table/**", "/dashboard/**"};
-//		http.authorizeRequests()
-//			.antMatchers(needAuthUrls).authenticated()
-//			.anyRequest().permitAll()
-//			.and()
-//			.formLogin()
-//			.loginPage("/user/login")
-//			.loginProcessingUrl("/user/login.do")
-//			.defaultSuccessUrl("/")
-//			.failureUrl("/user/login?error=true")
-//			.and()
-//			.logout()
-//			.logoutUrl("/logout")
-//			.logoutSuccessUrl("/");
 	}
 
 	@Override
