@@ -33,12 +33,15 @@ public class UserService {
 	final JavaMailSender mailSender;
 	final BCryptPasswordEncoder passwordEncoder;
 
-	public void addNewUser(User user) {
+	public List<User> getUsers(){
+		return userRepository.findAll();
+	}
+
+	public User addNewUser(User user) {
 		if (!userRepository.existsByAccount(user.getAccount()) && !userRepository.existsByEmail(user.getEmail())) {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			user.setAuthorities(List.of(new UserRole("USER")));
-			userRepository.save(user);
-			return;
+			return userRepository.save(user);
 		}
 		throw new RuntimeException("account or e-mail already exists");
 	}

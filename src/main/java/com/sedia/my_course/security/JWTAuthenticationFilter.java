@@ -12,20 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 public class JWTAuthenticationFilter extends GenericFilterBean {
-	
-	@Override
-    public void doFilter(ServletRequest request,
-	                       ServletResponse response,
-	                       FilterChain filterChain)
-            throws IOException, ServletException {
-		
-		//驗證token，獲得授權
-        Authentication authentication = JwtUtil
-                .getAuthentication((HttpServletRequest)request);
 
-        SecurityContextHolder.getContext()
-                .setAuthentication(authentication);
-        filterChain.doFilter(request,response);
-    }
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+		//驗證token，獲得授權
+		Authentication authentication = JwtUtil.getAuthentication((HttpServletRequest) request);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		filterChain.doFilter(request, response);
+	}
 
 }

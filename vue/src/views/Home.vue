@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h1>This is home page.</h1>
-    <HelloWorld :message="'wade'"/>
+    <HelloWorld :message="'Wade'"/>
   </v-container>
 </template>
 

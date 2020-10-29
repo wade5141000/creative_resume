@@ -5,32 +5,22 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        isLogin: false,
-        user: {
-            jwt: "",
-            id: "",
-            username: ""
-        }
+        isLogin: sessionStorage.getItem('user') ? true : false,
+        user: sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')) : {}
     },
     mutations: {
         login(state, user) {
             state.user = user
             state.isLogin = true
-            localStorage.setItem("user", JSON.stringify(state.user));
+            sessionStorage.setItem("user", JSON.stringify(state.user));
         },
         logout(state){
             state.user = {}
             state.isLogin = false;
-            localStorage.removeItem('user');
+            sessionStorage.removeItem('user');
         }
     }
 })
-
-let user = localStorage.getItem("user");
-if(user){
-    user = JSON.parse(user)
-    store.commit('login', user)
-}
 
 
 export default store;

@@ -5,49 +5,22 @@ import com.sedia.my_course.dto.PasswordDto;
 import com.sedia.my_course.entity.user.User;
 import com.sedia.my_course.service.UserService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
-@Slf4j
 public class UserController {
 
 	final UserService userService;
 
-	@GetMapping("/login")
-	public String loginPage(Model model) {
-		model.addAttribute("showTopbar", "N");
-		model.addAttribute("showSidebar", "N");
-		model.addAttribute("showFooter", "N");
-		return "account/login";
-	}
-
-	@GetMapping("/signup")
-	public String signUp(Model model) {
-		model.addAttribute("showTopbar", "N");
-		model.addAttribute("showSidebar", "N");
-		model.addAttribute("showFooter", "N");
-		return "account/signup";
-	}
-
-	@PostMapping("/add")
-	public String addNewUser(User user) {
-		userService.addNewUser(user);
-		return "redirect:/user/login";
-	}
-
-	@GetMapping("/reset-password")
-	public String changePasswordPage(Model model) {
-		model.addAttribute("showTopbar", "N");
-		model.addAttribute("showSidebar", "N");
-		model.addAttribute("showFooter", "N");
-		return "account/forgotPassword";
+	@GetMapping("/users")
+	public List<User> getUsers(){
+		return userService.getUsers();
 	}
 
 	@PostMapping("/resetPassword")
@@ -68,7 +41,7 @@ public class UserController {
 			return "account/updatePassword";
 		}
 		request.setAttribute("message", "token錯誤或已被使用。");
-		log.error("Invalid token:{}", token);
+		System.out.printf("Invalid token:%s%n", token);
 		return "forward:/error";
 	}
 
@@ -79,7 +52,7 @@ public class UserController {
 			return "redirect:/";
 		}
 		request.setAttribute("message", "token錯誤或已被使用。");
-		log.error("Invalid token:{}", passwordDto.getToken());
+		System.out.printf("Invalid token:%s%n", passwordDto.getToken());
 		return "forward:/error";
 	}
 

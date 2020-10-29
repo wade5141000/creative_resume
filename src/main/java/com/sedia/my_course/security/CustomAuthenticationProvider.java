@@ -7,14 +7,17 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class CustomAuthenticationProvider implements AuthenticationProvider {
-	
+
 	final UserLoginService userLoginService;
-	
+
+	final BCryptPasswordEncoder passwordEncoder;
+
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		// 獲得使用者帳號及密碼
@@ -22,11 +25,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String password = authentication.getCredentials().toString();
 		UserDetails user = userLoginService.loadUserByUsername(account);
 		// 帳號密碼驗證邏輯
-		if (account.equals(user.getUsername()) && password.equals(user.getPassword())) {
-
+		if (account.equals(user.getUsername()) && passwordEncoder.matches(password, user.getPassword())) {
 			// 生成Authentication令牌
-			Authentication auth = new UsernamePasswordAuthenticationToken(user, password, user.getAuthorities());
-			return auth;
+			return new UsernamePasswordAuthenticationToken(user, password, user.getAuthorities());
 		} else {
 			throw new BadCredentialsException("Password error");
 		}
