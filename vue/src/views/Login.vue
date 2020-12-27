@@ -16,7 +16,6 @@
       <v-col cols="4">
         <v-btn elevation="2" outlined class="primary--text" @click="login"> Login </v-btn>
         <v-btn elevation="2" outlined class="primary--text" @click="logout"> Logout </v-btn>
-        <v-btn elevation="2" outlined class="primary--text" @click="getUsers"> Users </v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -33,38 +32,37 @@ export default {
   },
   methods: {
     login() {
-        const data = {
-          username: this.username,
-          password: this.password
+        // const data = {
+        //   username: this.username,
+        //   password: this.password
+        // }
+        // const formData = new FormData()
+        // Object.keys(data).forEach(key => {
+        //   formData.append(key, data[key])
+        // })
+      // http.post("/login", formData)
+      //   .then((response) => {
+      //     console.log('登入成功');
+      //     console.log(response.data);
+      //     this.$store.commit('login', response.data)
+      //     let redirect = this.$route.query.redirect ? this.$route.query.redirect : '/'
+      //     this.$router.push(redirect)
+      //   })
+      //   .catch(() => {
+      //     console.log('登入失敗');
+      //   })
+
+        if(this.username === 'aaa' && this.password === 'aaa'){
+          console.log('登入成功');
+          this.$store.commit('login', {})
+          let redirect = this.$route.query.redirect ? this.$route.query.redirect : '/'
+          this.$router.push(redirect)
         }
-        const formData = new FormData()
-        Object.keys(data).forEach(key => {
-          formData.append(key, data[key])
-        })
         
-        http.post("/login", formData)
-          .then((response) => {
-            console.log('登入成功');
-            console.log(response.data);
-            this.$store.commit('login', response.data)
-            let redirect = this.$route.query.redirect ? this.$route.query.redirect : '/'
-            this.$router.push(redirect)
-          })
-          .catch(() => {
-            console.log('登入失敗');
-          })
+
     },
     logout(){
       this.$store.commit('logout')
-    },
-    getUsers(){
-      http.get("/user/users")
-      .then(function(response){
-        console.log(response);
-      })
-      .catch(function(error){
-        console.log("error:"+error);
-      })
     }
   }
 }

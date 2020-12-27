@@ -1,7 +1,5 @@
 <template>
-  <v-container>
-    <h1>This is user page.</h1>
-  </v-container>
+  <h1>This is user page.</h1>
 </template>
 
 <script>
