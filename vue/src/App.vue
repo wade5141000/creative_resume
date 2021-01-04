@@ -10,7 +10,7 @@
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Login</v-list-item-title>
+            <v-list-item-title>登入</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link to="/user">
@@ -27,6 +27,14 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>sample</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link to="/table">
+          <v-list-item-action>
+            <v-icon>mdi-table-account</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>課表管理</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
